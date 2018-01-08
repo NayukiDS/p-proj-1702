@@ -10,7 +10,7 @@ var UserSchema = new Schema({
     authentic: { type: Boolean, default: false },
     class_id: { type: String, ref: 'class' },
     desks: [{ type: String, ref:'desk' }],
-    info: {type: String}//JSON string
+    info: {type: Schema.Types.Mixed}//JSON string
 });
 
 module.exports = mongoose.model('user', UserSchema);
