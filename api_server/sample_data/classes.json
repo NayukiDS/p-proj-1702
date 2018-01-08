@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "145701",
+    "college": "实验学院",
+    "major": "信息工程",
+    "year": 2014,
+    "name": "计算机中法班",
+    "teacher_id": "108002",
+    "desk_id": "5a52e7ab7ecde10cb8f75c05"
+  },
+  {
+    "_id": "145702",
+    "college": "实验学院",
+    "major": "信息工程",
+    "year": 2014,
+    "name": "计算机2班",
+    "teacher_id": "108002",
+    "desk_id": "5a52e7ab7ecde10cb8f75c06"
+  }
+]

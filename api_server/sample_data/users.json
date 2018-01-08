@@ -1,0 +1,135 @@
+[
+  {
+    "wechat_id": "wid01",
+    "bind_id": "14521216",
+    "name": "Mamoru",
+    "admin": false,
+    "admin_pd": "",
+    "authentic": true,
+    "class_id": "145701",
+    "desks": [
+      "5a520cbb3519c45574433aa0",
+      "5a520d5d4f8c126f80c5e249"
+    ],
+    "info": {
+      "office": "",
+      "phone": "",
+      "email": ""
+    }
+  },
+  {
+    "wechat_id": "wid02",
+    "bind_id": "14570119",
+    "name": "小gay",
+    "admin": false,
+    "admin_pd": "",
+    "authentic": true,
+    "class_id": "145702",
+    "desks": [
+      "5a520da6d70e0138f4673fd0"
+    ],
+    "info": {
+      "office": "",
+      "phone": "",
+      "email": ""
+    }
+  },
+  {
+    "wechat_id": "wid03",
+    "bind_id": "14521231",
+    "name": "Van",
+    "admin": false,
+    "admin_pd": "",
+    "authentic": false,
+    "class_id": "145701",
+    "desks": [
+      "5a520e8c8cecf36facc011a9"
+    ],
+    "info": {
+      "office": "",
+      "phone": "",
+      "email": ""
+    }
+  },
+  {
+    "wechat_id": "wid04",
+    "bind_id": "118001",
+    "name": "王卓峥",
+    "admin": false,
+    "admin_pd": "",
+    "authentic": true,
+    "class_id": "",
+    "desks": [
+      "5a520e244b7ad1640c4c6f25"
+    ],
+    "info": {
+      "office": "dark office",
+      "phone": "1000000001",
+      "email": "wzz@bjut.edu.cn"
+    }
+  },
+  {
+    "wechat_id": "",
+    "bind_id": "109001",
+    "name": "admin",
+    "admin": true,
+    "admin_pd": "",
+    "authentic": true,
+    "class_id": "145701",
+    "desks": [
+    ],
+    "info": {
+      "office": "",
+      "phone": "",
+      "email": ""
+    }
+  },
+  {
+    "wechat_id": "wid05",
+    "bind_id": "108002",
+    "name": "郑鲲",
+    "admin": false,
+    "admin_pd": "",
+    "authentic": true,
+    "class_id": "",
+    "desks": [
+    ],
+    "info": {
+      "office": "科学楼",
+      "phone": "",
+      "email": "zk@bjut.edu.cn"
+    }
+  },
+  {
+    "wechat_id": "wid06",
+    "bind_id": "108003",
+    "name": "李文正",
+    "admin": false,
+    "admin_pd": "",
+    "authentic": true,
+    "class_id": "",
+    "desks": [
+    ],
+    "info": {
+      "office": "科学楼xxx",
+      "phone": "",
+      "email": "lwz@bjut.edu.cn"
+    }
+  },
+  {
+    "wechat_id": "wid07",
+    "bind_id": "108004",
+    "name": "张丽珩",
+    "admin": false,
+    "admin_pd": "",
+    "authentic": true,
+    "class_id": "",
+    "desks": [
+    ],
+    "info": {
+      "office": "uot",
+      "phone": "",
+      "email": "zlh@bjut.edu.cn"
+    }
+  }
+]

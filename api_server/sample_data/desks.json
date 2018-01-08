@@ -1,0 +1,51 @@
+[
+  {
+    "_id": "5a52e7ab7ecde10cb8f75c05",
+    "pre_desk": "",
+    "name": "中法班课表",
+    "bind_class": "145701",
+    "courses":["1600238","1600231"]
+  },
+  {
+    "_id": "5a52e7ab7ecde10cb8f75c06",
+    "pre_desk": "",
+    "name": "计算机2班课表",
+    "bind_class": "145701",
+    "courses":["1600166","1600231"]
+  },
+  {
+    "_id": "5a520cbb3519c45574433aa0",
+    "pre_desk": "",
+    "name": "默认桌面",
+    "bind_class": "145701",
+    "courses":["1600159"]
+  },
+  {
+    "_id": "5a520d5d4f8c126f80c5e249",
+    "pre_desk": "5a52e7ab7ecde10cb8f75c05",
+    "name": "桌面2",
+    "bind_class": "145701",
+    "courses":["1600159"]
+  },
+  {
+    "_id": "5a520da6d70e0138f4673fd0",
+    "pre_desk": "5a52e7ab7ecde10cb8f75c06",
+    "name": "小gay的桌面",
+    "bind_class": "145702",
+    "courses":["1600238"]
+  },
+  {
+    "_id": "5a520e244b7ad1640c4c6f25",
+    "pre_desk": "",
+    "name": "boss的桌面",
+    "bind_class": "",
+    "courses":["1600238"]
+  },
+  {
+    "_id": "5a520e8c8cecf36facc011a9",
+    "pre_desk": "",
+    "name": "boss的桌面",
+    "bind_class": "",
+    "courses":["1600238","1600166","1600231"]
+  }
+]
