@@ -17,13 +17,10 @@ json_obj.forEach(function (t) {
     var course = new Course;
     var schedule = new Schedule();
     course._id = t._id;
-    course.bind_id = t.bind_id;
     course.name = t.name;
-    course.admin = t.admin;
-    course.admin_pd = t.admin_pd;
-    course.authentic = t.authentic;
-    course.class_id = t.class_id;
-    course.desks = t.desks;
+    course.semester = t.semester;
+    course.professor_id = t.professor_id;
+    course.student_r_id = t.student_r_id;
     var json_schedule = [];
     t.schedule.forEach(function (v) {
         schedule.setter(v.type,v.day,v.week,v.time,v.location);
