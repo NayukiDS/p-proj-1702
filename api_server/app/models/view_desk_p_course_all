@@ -1,0 +1,15 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var View_desk_p_course_all = new Schema({
+    _id: String,
+    bind_class: String,
+    pre_desk: String,
+    course: [{ type:String }],
+    name: String,
+    pre_desk_doc: [{ type: Schema.Types.Mixed }],
+    pre_desk_courses: [{ type: Schema.Types.Mixed }],
+    desk_courses: [{ type: Schema.Types.Mixed }]
+});
+
+module.exports = mongoose.model('desk_p_course_all',View_desk_p_course_all);
