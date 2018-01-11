@@ -1,15 +1,6 @@
 var View_desk_p_course_all = require('../models/view_desk_p_course_all');
 
-var res_json = {};
-var res_json_mo = [];
-var res_json_tu = [];
-var res_json_we = [];
-var res_json_th = [];
-var res_json_fr = [];
-var res_json_sa = [];
-var res_json_su = [];
-
-function course_add(value,value2){
+function course_add(value,value2,res_json_mo,res_json_tu,res_json_we,res_json_th,res_json_fr,res_json_sa,res_json_su){
     var temp = new Object();
     temp._id = value._id;
     temp.name = value.name;
@@ -44,14 +35,14 @@ function course_add(value,value2){
 }
 
 function course_list_get_by_week(d_id, week) {
-    res_json = {};
-    res_json_mo = [];
-    res_json_tu = [];
-    res_json_we = [];
-    res_json_th = [];
-    res_json_fr = [];
-    res_json_sa = [];
-    res_json_su = [];
+    var res_json = {};
+    var res_json_mo = [];
+    var res_json_tu = [];
+    var res_json_we = [];
+    var res_json_th = [];
+    var res_json_fr = [];
+    var res_json_sa = [];
+    var res_json_su = [];
     this.getResult = function () {
         return res_json;
     };
@@ -73,7 +64,7 @@ function course_list_get_by_week(d_id, week) {
                     value.schedule.forEach(function (value2) {
                         for(var index=0;index<=value2.week.length;index++){
                             if(value2.week[index]===week){
-                                course_add(value,value2);
+                                course_add(value,value2,res_json_mo,res_json_tu,res_json_we,res_json_th,res_json_fr,res_json_sa,res_json_su);
                                 break;
                             }
                         }
@@ -83,7 +74,7 @@ function course_list_get_by_week(d_id, week) {
                     value.schedule.forEach(function (value2) {
                         for(var index=0;index<=value2.week.length;index++){
                             if(value2.week[index]===week){
-                                course_add(value,value2);
+                                course_add(value,value2,res_json_mo,res_json_tu,res_json_we,res_json_th,res_json_fr,res_json_sa,res_json_su);
                                 break;
                             }
                         }
