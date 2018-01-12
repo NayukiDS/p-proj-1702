@@ -97,5 +97,28 @@
         "location": "综合楼106"
       }
     ]
+  },
+  {
+    "_id": "1600181",
+    "name": "工作实习",
+    "semester": 201701,
+    "professor_id": "108003",
+    "student_r_id": "",
+    "schedule": [
+      {
+        "type": "practical",
+        "day": "we",
+        "week": [17,19,20],
+        "time": [2,8],
+        "location": "天成科技大厦 10层"
+      },
+      {
+        "type": "practical",
+        "day": "fr",
+        "week": [19,20],
+        "time": [2,8],
+        "location": "天成科技大厦 10层"
+      }
+    ]
   }
 ]
