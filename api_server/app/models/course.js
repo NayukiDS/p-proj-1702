@@ -10,4 +10,5 @@ var CourseSchema = new Schema({
     schedule: [{ type: Schema.Types.Mixed }]//JSON string
 });
 
-module.exports = mongoose.model('course', CourseSchema);
+// module.exports = mongoose.model('course', CourseSchema);
+module.exports = mongoose.model('event', CourseSchema);
