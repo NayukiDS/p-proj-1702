@@ -44,16 +44,16 @@ function date_sweek_convert(date) {
             week_need = Date.parse(date_standard[i-1].start_week);
             week_ts = (date-week_need)/1000;
             date_json.semester = date_standard[i-1].semester;
-            date_json.week = parseInt(week_ts/604800);
-            date_json.day = date.getUTCDay();
+            date_json.week = parseInt(week_ts/604800) + 1;
+            date_json.day = date.getDay();
             break;
         }
         if(i===date_standard.length-1){
             week_need = Date.parse(date_standard[i].start_week);
             week_ts = (date-week_need)/1000;
             date_json.semester = date_standard[i].semester;
-            date_json.week = parseInt(week_ts/604800);
-            date_json.day = date.getUTCDay();
+            date_json.week = parseInt(week_ts/604800) + 1;
+            date_json.day = date.getDay();
             break;
         }
     }
