@@ -41,14 +41,14 @@ router.route('/test_api')
         res.json({info:"GET form Mamoru"});});
 
 var Course_list_get_by_week = require('./app/actions/course_list_get_by_week');
-var Date_sweek_convert = require('./app/actions/date_sweek_convert');
+var date_sweek_convert = require('./app/actions/date_sweek_convert');
 router.route('/course_list')
     .get(function (req, res) {
         // var d_id = req.query.desk_id;
         var d_id = "5a520da6d70e0138f4673fd0";
-        var date = req.query.date_str;
+        var date = req.query.date;
         console.log("req_date:"+date);
-        var date_json = Date_sweek_convert(date);
+        var date_json = date_sweek_convert(date);
         if(!date_json.valid){
             res.status(500).json({info:"invalid date."});
             return;
@@ -58,11 +58,21 @@ router.route('/course_list')
 
         function rc() {
             var res_json = course_get.getResult();
+            var res_obj = {
+                semester: date_json.semester,
+                week: date_json.week,
+                day: date_json.day,
+                date: date_json.date,
+                event_list: []
+            };
             var course_list = res_json[date_json.day];
             if(course_list!==undefined){
-                res.json(course_list.courses);
+                res_obj.event_list = course_list.courses;
+                res.json(res_obj);
+                // res.json(course_list.courses);
             }else {
-                res.status(500).json([]);
+                // res.status(500).json([]);
+                res.json(res_obj);
             }
         }
     });
