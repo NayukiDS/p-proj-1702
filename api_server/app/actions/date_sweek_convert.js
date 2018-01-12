@@ -17,12 +17,13 @@ var date_standard = [
     }
 ];
 
-function date_sweek_convert(date) {
+function date_sweek_convert(date,authentic) {
+    if(!authentic)authentic=false;
     var date_json = {
         semester: -1,
         week: -1,
         day: -1,
-        date: "1900/1/1",
+        date: "1900-1-1",
         valid: false
     };
     var date_valid = new Date(date);
