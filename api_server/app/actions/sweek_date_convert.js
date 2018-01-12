@@ -71,6 +71,3 @@ function sweek_date_convert(sweek,authentic) {
 }
 
 module.exports = sweek_date_convert;
-
-var a = {semester:201701,week:-2,day:4};
-console.log(sweek_date_convert(a,true));
