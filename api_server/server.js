@@ -41,25 +41,28 @@ router.route('/test_api')
         res.json({info:"GET form Mamoru"});});
 
 var Course_list_get_by_week = require('./app/actions/course_list_get_by_week');
+var Date_sweek_convert = require('./app/actions/date_sweek_convert');
 router.route('/course_list')
     .get(function (req, res) {
         // var d_id = req.query.desk_id;
         var d_id = "5a520da6d70e0138f4673fd0";
-        var day = req.query.activeIndex;
-        // var week = req.query.week;
-        var week = 10;
-        var course_get = new Course_list_get_by_week(d_id,week);
-        course_get.do_exec();
-        setTimeout(function () {
+        var date = req.query.date_str;
+        console.log("req_date:"+date);
+        var date_json = Date_sweek_convert(date);
+        if(!date_json.valid){
+            res.status(500).json({info:"invalid date."});
+            return;
+        }
+        var course_get = new Course_list_get_by_week(d_id,date_json.semester,date_json.week);
+        course_get.do_exec(rc);
+
+        function rc() {
             var res_json = course_get.getResult();
-            var day_int = parseInt(day);
-            // console.log(res_json[day_int]);
-            // if(day>=1&&day<=7){
-            if(day>=0&&day<=6){
-                // day_int -= 1;
-                res.json(res_json[day_int].courses);
-            }else{
-                res.status(500).json({info:"bad activeIndex request!"});
+            var course_list = res_json[date_json.day];
+            if(course_list!==undefined){
+                res.json(course_list.courses);
+            }else {
+                res.status(500).json([]);
             }
-        },50);
+        }
     });

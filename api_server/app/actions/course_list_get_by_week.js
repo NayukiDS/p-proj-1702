@@ -34,7 +34,7 @@ function course_add(value,value2,res_json_mo,res_json_tu,res_json_we,res_json_th
     }
 }
 
-function course_list_get_by_week(d_id, week) {
+function course_list_get_by_week(d_id, semester, week) {
     var res_json = {};
     var res_json_mo = [];
     var res_json_tu = [];
@@ -46,7 +46,7 @@ function course_list_get_by_week(d_id, week) {
     this.getResult = function () {
         return res_json;
     };
-    this.do_exec = function () {
+    this.do_exec = function (callback) {
         var promise = View_desk_p_course_all.find({
             '_id': d_id.toString()
         })
@@ -61,6 +61,7 @@ function course_list_get_by_week(d_id, week) {
                 res_init = JSON.parse(res_init);
                 res_init = res_init[0];
                 res_init.desk_courses.forEach(function (value) {
+                    if(value.semester!==semester)return;
                     value.schedule.forEach(function (value2) {
                         for(var index=0;index<=value2.week.length;index++){
                             if(value2.week[index]===week){
@@ -71,6 +72,7 @@ function course_list_get_by_week(d_id, week) {
                     })
                 });
                 res_init.pre_desk_courses.forEach(function (value) {
+                    if(value.semester!==semester)return;
                     value.schedule.forEach(function (value2) {
                         for(var index=0;index<=value2.week.length;index++){
                             if(value2.week[index]===week){
@@ -80,14 +82,25 @@ function course_list_get_by_week(d_id, week) {
                         }
                     })
                 });
-                var res_str = '[{"day":"mo","courses":'+ JSON.stringify(res_json_mo) +'},' +
-                    '{"day":"tu","courses":'+ JSON.stringify(res_json_tu) +'},' +
-                    '{"day":"we","courses":'+ JSON.stringify(res_json_we) +'},' +
-                    '{"day":"th","courses":'+ JSON.stringify(res_json_th) +'},' +
-                    '{"day":"fr","courses":'+ JSON.stringify(res_json_fr) +'},' +
-                    '{"day":"sa","courses":'+ JSON.stringify(res_json_sa) +'},' +
-                    '{"day":"su","courses":'+ JSON.stringify(res_json_su) +'}]';
+                // var res_str = '[{"day":"mo","courses":'+ JSON.stringify(res_json_mo) +'},' +
+                //     '{"day":"tu","courses":'+ JSON.stringify(res_json_tu) +'},' +
+                //     '{"day":"we","courses":'+ JSON.stringify(res_json_we) +'},' +
+                //     '{"day":"th","courses":'+ JSON.stringify(res_json_th) +'},' +
+                //     '{"day":"fr","courses":'+ JSON.stringify(res_json_fr) +'},' +
+                //     '{"day":"sa","courses":'+ JSON.stringify(res_json_sa) +'},' +
+                //     '{"day":"su","courses":'+ JSON.stringify(res_json_su) +'}]';
+                var res_str =
+                '[' +
+                '{"day":"su","courses":'+ JSON.stringify(res_json_su) + '},' +
+                '{"day":"mo","courses":'+ JSON.stringify(res_json_mo) + '},' +
+                '{"day":"tu","courses":'+ JSON.stringify(res_json_tu) + '},' +
+                '{"day":"we","courses":'+ JSON.stringify(res_json_we) + '},' +
+                '{"day":"th","courses":'+ JSON.stringify(res_json_th) + '},' +
+                '{"day":"fr","courses":'+ JSON.stringify(res_json_fr) + '},' +
+                '{"day":"sa","courses":'+ JSON.stringify(res_json_sa) + '}' +
+                ']';
                 res_json = JSON.parse(res_str);
+                callback();
             },
             function (err) {
                 console.log("error" + err);
