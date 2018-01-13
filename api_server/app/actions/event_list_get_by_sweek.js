@@ -43,37 +43,41 @@ function event_list_get_by_sweek(d_id, semester, week) {
     var res_json_fr = [];
     var res_json_sa = [];
     var res_json_su = [];
+    var that = this;
     this.getResult = function () {
+        var res_str =
+            '[' +
+            '{"day":"su","courses":'+ JSON.stringify(res_json_su) + '},' +
+            '{"day":"mo","courses":'+ JSON.stringify(res_json_mo) + '},' +
+            '{"day":"tu","courses":'+ JSON.stringify(res_json_tu) + '},' +
+            '{"day":"we","courses":'+ JSON.stringify(res_json_we) + '},' +
+            '{"day":"th","courses":'+ JSON.stringify(res_json_th) + '},' +
+            '{"day":"fr","courses":'+ JSON.stringify(res_json_fr) + '},' +
+            '{"day":"sa","courses":'+ JSON.stringify(res_json_sa) + '}' +
+            ']';
+        res_json = JSON.parse(res_str);
         return res_json;
     };
-    this.do_exec = function (callback) {
+    this.getEvents = function (desk_id, loaded_f, pre) {
+        if(!pre)pre = false;
         var promise = View_desk_event.find({
-            '_id': d_id.toString()
+            '_id': desk_id.toString()
         })
             .select({
-                pre_desk_courses: 1,
-                desk_courses: 1
+                pre_desk: 1,
+                event_docs: 1
             })
             .exec();
+
         promise.then(
             function (result) {
 
                 var res_init = JSON.stringify(result);
                 res_init = JSON.parse(res_init);
                 res_init = res_init[0];
-                res_init.desk_courses.forEach(function (value) {
+                res_init.event_docs.forEach(function (value) {
                     if(value.semester!==semester)return;
-                    value.schedule.forEach(function (value2) {
-                        for(var index=0;index<=value2.week.length;index++){
-                            if(value2.week[index]===week){
-                                course_add(value,value2,res_json_mo,res_json_tu,res_json_we,res_json_th,res_json_fr,res_json_sa,res_json_su);
-                                break;
-                            }
-                        }
-                    })
-                });
-                res_init.pre_desk_courses.forEach(function (value) {
-                    if(value.semester!==semester)return;
+                    if(value.private)return;
                     value.schedule.forEach(function (value2) {
                         for(var index=0;index<=value2.week.length;index++){
                             if(value2.week[index]===week){
@@ -84,24 +88,21 @@ function event_list_get_by_sweek(d_id, semester, week) {
                     })
                 });
 
+                if(res_init.pre_desk){
+                    that.getEvents(res_init.pre_desk,loaded_f);
+                }else{
+                    loaded_f();
+                }
 
-                var res_str =
-                    '[' +
-                    '{"day":"su","courses":'+ JSON.stringify(res_json_su) + '},' +
-                    '{"day":"mo","courses":'+ JSON.stringify(res_json_mo) + '},' +
-                    '{"day":"tu","courses":'+ JSON.stringify(res_json_tu) + '},' +
-                    '{"day":"we","courses":'+ JSON.stringify(res_json_we) + '},' +
-                    '{"day":"th","courses":'+ JSON.stringify(res_json_th) + '},' +
-                    '{"day":"fr","courses":'+ JSON.stringify(res_json_fr) + '},' +
-                    '{"day":"sa","courses":'+ JSON.stringify(res_json_sa) + '}' +
-                    ']';
-                res_json = JSON.parse(res_str);
-                callback();
+                // console.log(res_init._id);
             },
             function (err) {
                 console.log("error" + err);
             }
         )
+    };
+    this.do_exec = function (callback) {
+        that.getEvents(d_id,callback);
     };
 }
 
