@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var db_info = require('../models/mongoose_connection');
+var db_info = require('../app/models/mongoose_connection');
 mongoose.connect('mongodb://'
     +db_info.user_name +':'
     +db_info.user_passwd +'@'
@@ -7,15 +7,17 @@ mongoose.connect('mongodb://'
     +db_info.port+'/'
     +db_info.db+'');
 
-var User = require('../models/user');
-var Info = require('../models/info_json');
+var User = require('../app/models/user');
+var Info = require('../app/models/info_json');
 
 var fs = require('fs');
-var json_file = '../../sample_data/users.json';
+var json_file = './users.json';
 var json_obj = JSON.parse(fs.readFileSync(json_file,'utf8'));
 json_obj.forEach(function (t) {
     var user = new User;
     var info = new Info();
+    // if(t._id!==""||t._id!==undefined)user._id = t._id;
+    // user._id = t._id;
     user.wechat_id = t.wechat_id;
     user.bind_id = t.bind_id;
     user.name = t.name;

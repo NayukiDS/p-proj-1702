@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "5a5986c36ebab81f58cd4842",
+    "pre_comment": "",
+    "user_id": "108004",
+    "event_id": "1600231",
+    "add_ts": "1489130539000",
+    "focus": true,
+    "available": true,
+    "content": "请大家带好铅笔橡皮。"
+  },
+  {
+    "_id": "5a5986ec3f0f243950e55c68",
+    "pre_comment": "5a5986c36ebab81f58cd4842",
+    "user_id": "108002",
+    "event_id": "1600231",
+    "add_ts": "1489147621000",
+    "focus": false,
+    "available": true,
+    "content": "这节课对于去法国的同学很重要，一定要过。"
+  },
+  {
+    "_id": "5a5987758bb8ab0834818ada",
+    "pre_comment": "",
+    "user_id": "118001",
+    "event_id": "1600231",
+    "add_ts": "1489041893000",
+    "focus": false,
+    "available": true,
+    "content": "沙发"
+  },
+  {
+    "_id": "5a59886602fe5830acfc4897",
+    "pre_comment": "",
+    "user_id": "14570119",
+    "event_id": "1600231",
+    "add_ts": "1489363988000",
+    "focus": false,
+    "available": true,
+    "content": "老师这课不会像操作系统一样难过吧"
+  },
+  {
+    "_id": "5a59887c6afa1b519c092740",
+    "pre_comment": "5a59886602fe5830acfc4897",
+    "user_id": "14521216",
+    "event_id": "1600231",
+    "add_ts": "1489369866000",
+    "focus": false,
+    "available": true,
+    "content": "别想了 下学期见"
+  },
+  {
+    "_id": "5a59888be8860427d432a76a",
+    "pre_comment": "5a59887c6afa1b519c092740",
+    "user_id": "14570119",
+    "event_id": "1600231",
+    "add_ts": "1489370232000",
+    "focus": false,
+    "available": true,
+    "content": "是么 那我回宿舍打剑网3了"
+  }
+]

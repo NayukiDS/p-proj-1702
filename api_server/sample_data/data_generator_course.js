@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var db_info = require('../models/mongoose_connection');
+var db_info = require('../app/models/mongoose_connection');
 mongoose.connect('mongodb://'
     +db_info.user_name +':'
     +db_info.user_passwd +'@'
@@ -7,11 +7,11 @@ mongoose.connect('mongodb://'
     +db_info.port+'/'
     +db_info.db+'');
 
-var Course = require('../models/course');
-var Schedule = require('../models/schedule_json');
+var Course = require('../app/models/course');
+var Schedule = require('../app/models/schedule_json');
 
 var fs = require('fs');
-var json_file = '../../sample_data/courses.json';
+var json_file = './courses.json';
 var json_obj = JSON.parse(fs.readFileSync(json_file,'utf8'));
 json_obj.forEach(function (t) {
     var course = new Course;

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var db_info = require('../models/mongoose_connection');
+var db_info = require('../app/models/mongoose_connection');
 mongoose.connect('mongodb://'
     +db_info.user_name +':'
     +db_info.user_passwd +'@'
@@ -7,10 +7,10 @@ mongoose.connect('mongodb://'
     +db_info.port+'/'
     +db_info.db+'');
 
-var Desk = require('../models/desk');
+var Desk = require('../app/models/desk');
 
 var fs = require('fs');
-var json_file = '../../sample_data/desks.json';
+var json_file = './desks.json';
 var json_obj = JSON.parse(fs.readFileSync(json_file,'utf8'));
 json_obj.forEach(function (t) {
    var desk = new Desk;
