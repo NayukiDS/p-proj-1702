@@ -12,7 +12,7 @@ function comment_create(pre_comment, user_id, event_id, content) {
         comment.pre_comment = n_pre_comment;
         comment.user_id = n_user_id;
         comment.event_id = n_event_id;
-        comment.content = n_content
+        comment.content = n_content;
 
         var promise = comment.save();
 

@@ -63,11 +63,11 @@ function event_list_get_by_sweek(d_id, semester, week) {
         var promise = View_desk_event.find({
             '_id': desk_id.toString()
         })
-            .select({
-                pre_desk: 1,
-                event_docs: 1
-            })
-            .exec();
+        .select({
+            pre_desk: 1,
+            event_docs: 1
+        })
+        .exec();
 
         promise.then(
             function (result) {
