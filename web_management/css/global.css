@@ -117,6 +117,220 @@ body{
     right: -5rem;
 }
 
+#pre_page_btn{
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    top: 2rem;
+    /*z-index: 100;*/
+    text-align: center;
+    line-height:2rem;
+    font-size: 2rem;
+    opacity: 0.65;
+    transition: opacity 200ms;
+    cursor: pointer;
+}
+
+#pre_page_btn:hover{
+    opacity: 1;
+}
+
+#pre_page_btn .fa-arrow-circle-o-left{
+    /*display: none;*/
+    position: absolute;
+    opacity: 0;
+    transition: opacity 200ms;
+}
+
+#pre_page_btn .fa-arrow-circle-left{
+    /*display: block;*/
+    position: absolute;
+    opacity: 1;
+    transition: opacity 200ms;
+}
+
+
+#pre_page_btn:hover > .fa-arrow-circle-o-left{
+    /*display: block;*/
+    opacity: 1;
+}
+
+#pre_page_btn:hover > .fa-arrow-circle-left{
+    /*display: none;*/
+    opacity: 0;
+}
+
+.panel_pages{
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 8rem);
+    top: 5rem;
+}
+
+.basic_page{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /*background-color: #4cd964;*/
+    right: -40rem;
+}
+
+.pre_page{
+    right: 20rem;
+}
+
+.current_page{
+    right: 0;
+}
+
+
+.next_page{
+    right: -20rem;
+}
+
+#event_search_input{
+    position: relative;
+    display: inline;
+    font-size: 1.1rem;
+    text-align: center;
+    top: -0.2rem;
+    width: 90%;
+    transition: color 200ms;
+    border: none;
+    color: #969696;
+    background: transparent;
+    /*background-color: rgb(42,45,51);*/
+}
+
+#event_search_input:focus{
+    color: white;
+}
+
+#event_search_input:hover{
+    color: white;
+}
+
+.search_bar{
+    text-align: center;
+    margin-top: 1rem;
+    color: #969696;
+    opacity: 1;
+}
+
+.search_bar i{
+    float: right;
+    position: relative;
+    font-size: 0.9rem;
+    /*opacity: 0.5;*/
+}
+
+.search_bar hr{
+    width: 0;
+    margin: 0 0 0 0;
+    opacity: 0;
+}
+
+#search_container{
+    position: relative;
+    margin-top: 1rem;
+    background: transparent;
+    max-height: calc(100% - 5rem);
+    overflow-y: scroll;
+    /*background-color: white;*/
+}
+
+.events{
+    overflow: hidden;
+    position: relative;
+    width: 95%;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.5rem;
+    /*border-radius: 0.3rem;*/
+    height: 5rem;
+    transition: color 200ms, background-color 200ms, box-shadow 200ms;
+}
+
+.events:hover{
+    color: #2a2d33;
+    background: rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0 0 1rem 0 rgba(255, 255, 255, 0.5);
+    -moz-box-shadow: 0 0 1rem 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 1rem 0 rgba(255, 255, 255, 0.5);
+}
+
+.events:hover > .event_status_bar{
+
+}
+
+.events_id{
+    position: absolute;
+    opacity: 0.05;
+    font-size: 6rem;
+    top: -2rem;
+    left: -1rem;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+.events_name{
+    position: absolute;
+    top: 0.2rem;
+    left: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.event_status_bar{
+    position: absolute;
+    bottom: 0.2rem;
+    left: 0.5rem;
+    font-size: 0.8rem;
+    /*color: #969696;*/
+    user-select: none;
+    -moz-user-select: none;
+    text-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.2);
+}
+
+.event_status_bar i{
+
+}
+
+.event_status_bar span{
+    position: absolute;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    width: 3rem;
+    transition: color 200ms;
+}
+
+.comments_count{
+    margin-left: 0.3rem;
+}
+
+.event_status_bar .fa-comments{
+    margin-left: 3rem;
+}
+
+#custom_add_btn{
+    position: relative;
+    width: 100%;
+    height: 2rem;
+    margin-top: 1rem;
+    color: white;
+    background-color: rgb(230,97,79);
+    border-radius: 0.3rem;
+    cursor: pointer;
+    text-align: center;
+    line-height:2rem;
+
+    transition: color 200ms, background-color 200ms;
+}
+
+#custom_add_btn:hover{
+    color: rgb(230,97,79);
+    background-color: white;
+}
 
 .panel_date_picker{
     position: absolute;
@@ -222,7 +436,7 @@ body{
 .logout{
     position: absolute;
     bottom: 0;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     left: 6rem;
     opacity: 0.35;
     transition: opacity 200ms;

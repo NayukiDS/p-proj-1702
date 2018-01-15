@@ -156,6 +156,35 @@ function covert_month_cross_year(month){
 
 }
 
+function page_example(id, status) {
+    //status: 0-return 1-next 2-current 3-other
+    var page = $('#'+id+'');
+    var animation_dur = 200;
+    switch (status){
+        case 0:
+            page.animate({
+                right: "20rem"
+            },animation_dur);
+            break;
+        case 1:
+            page.animate({
+                right: "-20rem"
+            },animation_dur);
+            break;
+        case 2:
+            page.animate({
+                right: "0"
+            },animation_dur);
+            break;
+        case 3:
+            page.animate({
+                right: "-40rem"
+            },animation_dur);
+            break;
+        default:
+            return false;
+    }
+}
 
 $(document).ready(function () {
     calendar_init();
