@@ -20,7 +20,8 @@ function calendar_init(init_ts, year, month) {
         date = Date.parse(year+"-"+month+"-1");
         date = new Date(date);
     }
-    var c_year, c_month, c_date, today_date, today_month, today_year;
+    var c_year, c_month, c_date;
+    var today_date, today_month, today_year;
     var p_year, p_month;
     var a_year, a_month;
 
@@ -70,7 +71,7 @@ function calendar_init(init_ts, year, month) {
     if(p_wday!==6){
         for(i=p_wday;i>=0;i--){
             date_obj = new Date_obj(p_year, p_month, pre_day, undefined, undefined, false);
-            date_array.unshift(date_obj);
+            date_array.unshift(date_obj.exportOBJ());
             pre_day--;
         }
     }
@@ -78,7 +79,7 @@ function calendar_init(init_ts, year, month) {
     i = 1;
     while(i<=end_day){
         date_obj = new Date_obj(c_year, c_month, i, undefined, undefined, true);
-        date_array.push(date_obj);
+        date_array.push(date_obj.exportOBJ());
         i++;
         // console.log(init_ts);
     }
@@ -86,7 +87,7 @@ function calendar_init(init_ts, year, month) {
     i = 1;
     while(date_array.length<42){
         date_obj = new Date_obj(a_year, a_month, i, undefined, undefined, false);
-        date_array.push(date_obj);
+        date_array.push(date_obj.exportOBJ());
         i++;
     }
 
@@ -112,10 +113,10 @@ function calendar_init(init_ts, year, month) {
             if(date_obj.s_highlight){
                 $(v_d).addClass("day_highlight");
             }
-            if(date_obj.s_year===today_year&&date_obj.s_month===today_month&&date_obj.s_date===today_date&&!view_mode){
+            if(date_obj.s_year===today_year&&date_obj.s_month===today_month&&date_obj.s_date===today_date){
                 $(v_d).addClass("day_today");
             }
-            if(date_obj.s_month===c_month&&date_obj.s_date===c_date&&!view_mode){
+            if(date_obj.s_year===c_year&&date_obj.s_month===c_month&&date_obj.s_date===c_date&&!view_mode){
                 $(v_d).addClass("day_current");
             }
             index++;
