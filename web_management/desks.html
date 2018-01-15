@@ -258,6 +258,16 @@
             calendar_init(undefined, year, month+1);
         }
     });
+    $('#panel_picker_day').on('mousewheel', function (event) {
+        var year = parseInt($('#panel_picker_year').html());
+        var month = parseInt($('#panel_picker_month').html());
+        if(event.deltaY===1){
+            calendar_init(undefined, year, month-1);
+        }
+        if(event.deltaY===-1){
+            calendar_init(undefined, year, month+1);
+        }
+    });
     $('.picker_day').on('click', function(event){
         var pick_obj = event.target;
         var s_year = $(pick_obj).attr("s_year");
