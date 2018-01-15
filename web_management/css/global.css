@@ -146,6 +146,11 @@ body{
     display: inline;
     float: right;
     margin-right: 1rem;
+    transition: color 200ms;
+}
+
+#panel_picker_month:hover{
+    color: white;
 }
 
 .mouth_change{
