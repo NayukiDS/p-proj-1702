@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Desk</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/desks.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/desks.js"></script>
+</head>
+<body>
+    <div id="avatar_border">
+        <div id="avatar"></div>
+    </div>
+    <div class="user_panel">
+        <div class="panel">
+            <div class="panel_container">
+                <div class="user_info">
+                    <span id="user_id">
+                        14521216
+                    </span>
+                    <span id="user_name">陈健朗</span>
+                    <br>
+                    <span id="user_authentic">
+                        <i class="fa fa-id-card" aria-hidden="true"></i>
+                        已认证
+                    </span>
+
+                </div>
+
+                <div class="panel_date_picker">
+                    <div id="panel_picker_year">
+                        2019
+                    </div>
+                    <div id="panel_picker_month">
+                        10月
+                    </div>
+                    <div class="mouth_change">
+                        <i class="fa fa-angle-up" id="btn_month_up" aria-hidden="true"></i>
+                        &nbsp;
+                        <i class="fa fa-angle-down" id="btn_month_down" aria-hidden="true"></i>
+                    </div>
+                    <div id="panel_picker_day">
+                        <div class="picker_week">
+                            <div class="picker_day_t">周</div>
+                            <div class="picker_day_t">一</div>
+                            <div class="picker_day_t">二</div>
+                            <div class="picker_day_t">三</div>
+                            <div class="picker_day_t">四</div>
+                            <div class="picker_day_t">五</div>
+                            <div class="picker_day_t">六</div>
+                            <div class="picker_day_t">日</div>
+                        </div>
+                        <div class="picker_week">
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                        </div>
+                        <div class="picker_week">
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                        </div>
+                        <div class="picker_week">
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                        </div>
+                        <div class="picker_week">
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                        </div>
+                        <div class="picker_week">
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                        </div>
+                        <div class="picker_week">
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                            <div class="picker_day"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="logout">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>退出登录
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="desk">
+        <div class="desk_detail">
+            <div class="desk_select">
+                <!--<i class="fa fa-chevron-down" aria-hidden="true"></i>-->
+                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                &nbsp;
+                <span id="desk_current">
+                    我的课程表
+                </span>
+                &nbsp;
+                <!--<i class="fa fa-pencil-square-o" id="icon_name_change" aria-hidden="true"></i>-->
+            </div>
+            <div class="desk_date_picker">
+                <span id="week_current_cn">
+                    第21周
+                </span>
+                &nbsp;
+                <span id="date_current_cn">
+                    1月15日 - 1月17日
+                </span>
+
+            </div>
+            <div class="desk_add_new">
+                <span><i class="fa fa-angle-down" aria-hidden="true"></i>&nbsp;添加</span>
+            </div>
+        </div>
+        <div id="desk_flame">
+            <div class="hour_list">
+                <div class="hour_box hour_box_top">
+                    <span>0:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>1:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>2:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>3:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>4:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>5:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>6:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>7:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>8:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>9:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>10:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>11:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>12:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>13:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>14:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>15:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>16:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>17:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>18:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>19:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>20:00</span>
+                </div>
+                <div class="hour_box">
+                    <span>21:00</span>
+                </div>
+                <!--<div class="hour_box">-->
+                <!--<span>22:00</span>-->
+                <!--</div>-->
+                <!--<div class="hour_box">-->
+                <!--<span>23:00</span>-->
+                <!--</div>-->
+            </div>
+            <div class="flame_day gery"></div>
+            <div class="flame_day white"></div>
+            <div class="flame_day gery"></div>
+            <div class="flame_day white"></div>
+            <div class="flame_day gery"></div>
+            <div class="flame_day white"></div>
+            <div class="flame_day gery"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $('#panel_picker_year').on('mousewheel', function (event) {
+        var year = parseInt($('#panel_picker_year').html());
+        var month = parseInt($('#panel_picker_month').html());
+        if(event.deltaY===1){
+            calendar_init(undefined, year-1, month);
+        }
+        if(event.deltaY===-1){
+            calendar_init(undefined, year+1, month);
+        }
+    });
+    $('#panel_picker_month').on('mousewheel', function (event) {
+        var year = parseInt($('#panel_picker_year').html());
+        var month = parseInt($('#panel_picker_month').html());
+        if(event.deltaY===1){
+            calendar_init(undefined, year, month-1);
+        }
+        if(event.deltaY===-1){
+            calendar_init(undefined, year, month+1);
+        }
+    });
+    $('.picker_day').on('click', function(event){
+        var pick_obj = event.target;
+        var s_year = $(pick_obj).attr("s_year");
+        var s_month = $(pick_obj).attr("s_month");
+        var s_date = $(pick_obj).attr("s_date");
+        var date_str = s_year+"-"+s_month+"-"+s_date;
+        if(s_year&&s_month&&s_date){
+            calendar_init(Date.parse(date_str));
+        }else{
+            console.log("date load err");
+        }
+    });
+</script>
+</html>

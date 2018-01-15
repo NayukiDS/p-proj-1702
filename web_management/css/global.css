@@ -1,0 +1,229 @@
+*{
+    /*font-family: "Source Han Sans Light", "DengXian", "Microsoft YaHei Light";*/
+    font-family: "Microsoft YaHei Light";
+}
+
+body{
+    margin: 0 0 0 0;
+}
+
+.fa{
+    transition: text-shadow 200ms, color 200ms;
+}
+
+.user_panel{
+    position: absolute;
+    z-index: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.panel{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20rem;
+    height: 100%;
+    background-color: #2a2d33;
+
+    box-shadow: inset 2.8rem 0 3rem -2rem rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 2.8rem 0 3rem -2rem rgba(0,0,0,0.5);
+    -moz-box-shadow: inset 2.8rem 0 3rem -2rem rgba(0,0,0,0.5);
+    /*box-shadow: 0 0 0.5rem rgba(0,0,0,0.5);*/
+    /*-webkit-box-shadow: inset 2.8rem 0 3rem -2rem rgba(0,0,0,0.5);*/
+    /*-moz-box-shadow: inset 2.8rem 0 3rem -2rem rgba(0,0,0,0.5);*/
+}
+
+#avatar {
+    position: relative;
+    background-image: url('../res/avatar_example.jpg');
+    width: 3rem;
+    height: 3rem;
+    top: 0.2rem;
+    left: 0.2rem;
+
+    background-size: cover;
+
+    background-position: top center;
+
+    border-radius: 50%;
+}
+
+#avatar_border{
+    position: absolute;
+    z-index: 100;
+    width: 3.4rem;
+    height: 3.4rem;
+    top: 1rem;
+    right: 1rem;
+    background-size: cover;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: box-shadow 200ms;
+
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
+
+#avatar_border:hover{
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(230,97,79,1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(230,97,79,1);
+    box-shadow: 0px 0px 10px 0px rgba(230,97,79,1);
+}
+
+.panel_container{
+    position: absolute;
+    left: 5%;
+    top: 0;
+    width: 90%;
+    height: 98%;
+    /*background-color: white;*/
+    color: white;
+}
+
+.user_info{
+    position: absolute;
+    /*background-color: coral;*/
+    float: right;
+    top: 1rem;
+    right: 4.5rem;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+#user_name{
+    /*position: absolute;*/
+    font-size: 1.2rem;
+}
+
+#user_authentic{
+    font-size: 0.8rem;
+    opacity: 0.85;
+}
+
+#user_authentic:hover > .fa{
+    color: #99bb95;
+    /*text-shadow: 0px 0px 2px rgb(165, 245, 184);*/
+}
+
+#user_id{
+    position: absolute;
+    font-size: 6rem;
+    opacity: 0.08;
+    top: -3rem;
+    right: -5rem;
+}
+
+
+.panel_date_picker{
+    position: absolute;
+    width: 100%;
+    height: 18rem;
+    bottom: 5rem;
+    /*background-color: #525252;*/
+    color: #969696;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+#panel_picker_year{
+    font-size: 1.5rem;
+    display: inline;
+    float: right;
+    margin-right: 1rem;
+    transition: color 200ms;
+}
+
+#panel_picker_year:hover{
+    color: white;
+}
+
+#panel_picker_month{
+    font-size: 1.5rem;
+    display: inline;
+    float: right;
+    margin-right: 1rem;
+}
+
+.mouth_change{
+    font-size: 1.2rem;
+    display: inline;
+    margin-left: 1rem;
+}
+
+.mouth_change i{
+    transition: color 200ms;
+}
+
+.mouth_change i:hover{
+    color: white;
+}
+
+#panel_picker_day{
+    position: absolute;
+    width: 100%;
+    height: 88%;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.picker_week{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.picker_day_t{
+    flex: 1;
+    box-sizing: border-box;
+    text-align:center;
+}
+
+.picker_day{
+    flex: 1;
+    box-sizing: border-box;
+    text-align:center;
+    border: 2px solid rgba(255,255,255,0);
+    transition: border-color 200ms, color 200ms;
+    cursor: pointer;
+    line-height:2rem;
+    color: #646464;
+}
+
+.day_highlight{
+    color: #969696;;
+}
+
+.day_today{
+    background-color: rgb(250,97,79);
+    color: white;
+}
+
+.day_current{
+    border: 2px solid rgba(255,255,255,1);
+    color: white;
+}
+
+.picker_day:hover{
+    border: 2px solid rgba(250,97,79,1);
+    color: white;
+}
+
+.logout{
+    position: absolute;
+    bottom: 0;
+    font-size: 1.3rem;
+    left: 6rem;
+    opacity: 0.35;
+    transition: opacity 200ms;
+    cursor: pointer;
+}
+
+.logout:hover{
+    opacity: 1;
+}
