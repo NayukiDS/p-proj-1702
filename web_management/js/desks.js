@@ -324,8 +324,6 @@ function setDeskRowContent(event_list, index) {
 
     $(desk_flame_container[index]).html("");
     events.forEach( function (value, c_index) {
-        console.log(c_index);
-        console.log(value);
         $(desk_flame_container[index]).append(
             "<div class='event'>"+value.name+"</div>"
         );
@@ -336,9 +334,8 @@ function setDeskRowContent(event_list, index) {
 
         var css_height = event_dur * (full_h / 24);
         var css_top = value_time_start * (full_h / 24);
-        console.log(css_top);
-        console.log(css_height);
         $(create_obj[c_index]).css('height', css_height);
         $(create_obj[c_index]).css('top', css_top);
+        $(create_obj[c_index]).addClass('event_show');
     })
 }

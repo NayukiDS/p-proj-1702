@@ -44,10 +44,6 @@ function get_events_by_date(date_short, index) {
         if(xhr.readyState === 4){
             if(xhr.status === 200){
                 var res_data = JSON.parse(this.response);
-                // console.log(res_data);
-                var a = event_multi[index];
-                var b =res_data.event_list;
-                // console.log(isEquivalent(a,b));
                 // if(!isEquivalent(event_multi[index],res_data.event_list)){
                     event_multi[index]=res_data.event_list;
                 // }
