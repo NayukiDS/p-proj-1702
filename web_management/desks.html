@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/desks.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
     <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
     <script src="js/jquery.mousewheel.js"></script>
     <script src="js/global.js"></script>
     <script src="js/desks.js"></script>
@@ -177,114 +180,127 @@
         </div>
 
     </div>
-    <div id="desk" class="left_container_full">
+    <div id="desk" class="left_container_half">
         <div class="desk_detail">
             <div class="desk_select">
                 <!--<i class="fa fa-chevron-down" aria-hidden="true"></i>-->
                 <i class="fa fa-angle-down" aria-hidden="true"></i>
                 &nbsp;
                 <span id="desk_current">
-                    我的课程表
+                    My Desk
                 </span>
                 &nbsp;
                 <!--<i class="fa fa-pencil-square-o" id="icon_name_change" aria-hidden="true"></i>-->
             </div>
             <div class="desk_date_picker">
                 <span id="week_current_cn">
-                    第21周
+                    第NaN周
                 </span>
                 &nbsp;
                 <span id="date_current_cn">
-                    1月15日 - 1月17日
+                    <!--1月15日 - 1月17日-->
                 </span>
 
             </div>
-            <div class="desk_add_new">
-                <span><i class="fa fa-binoculars" aria-hidden="true"></i>&nbsp;添加</span>
-            </div>
+            <!--<div class="desk_add_new">-->
+                <!--<span><i class="fa fa-binoculars" aria-hidden="true"></i>&nbsp;添加</span>-->
+            <!--</div>-->
         </div>
-        <div id="desk_flame">
-            <div class="hour_list">
-                <div class="hour_box hour_box_top">
-                    <span>0:00</span>
+        <div id="desk_flame_canvas">
+            <div class="desk_flame">
+                <div id="desk_flame">
+                    <div class="hour_list">
+                        <div class="hour_box hour_box_top">
+                            <span>0:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>1:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>2:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>3:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>4:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>5:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>6:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>7:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>8:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>9:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>10:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>11:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>12:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>13:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>14:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>15:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>16:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>17:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>18:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>19:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>20:00</span>
+                        </div>
+                        <div class="hour_box">
+                            <span>21:00</span>
+                        </div>
+                        <div class="hour_box">
+                        <span>22:00</span>
+                        </div>
+                        <div class="hour_box">
+                        <span>23:00</span>
+                        </div>
+                    </div>
+                    <div class="flame_day gery"></div>
+                    <div class="flame_day white"></div>
+                    <div class="flame_day gery"></div>
+                    <div class="flame_day white"></div>
+                    <div class="flame_day gery"></div>
+                    <div class="flame_day white"></div>
+                    <div class="flame_day gery"></div>
                 </div>
-                <div class="hour_box">
-                    <span>1:00</span>
+                <div id="desk_flame_container">
+                    <div class="flame_day_container"></div>
+                    <div class="flame_day_container"></div>
+                    <div class="flame_day_container"></div>
+                    <div class="flame_day_container"></div>
+                    <div class="flame_day_container"></div>
+                    <div class="flame_day_container"></div>
+                    <div class="flame_day_container"></div>
                 </div>
-                <div class="hour_box">
-                    <span>2:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>3:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>4:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>5:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>6:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>7:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>8:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>9:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>10:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>11:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>12:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>13:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>14:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>15:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>16:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>17:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>18:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>19:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>20:00</span>
-                </div>
-                <div class="hour_box">
-                    <span>21:00</span>
-                </div>
-                <!--<div class="hour_box">-->
-                <!--<span>22:00</span>-->
-                <!--</div>-->
-                <!--<div class="hour_box">-->
-                <!--<span>23:00</span>-->
-                <!--</div>-->
             </div>
-            <div class="flame_day gery"></div>
-            <div class="flame_day white"></div>
-            <div class="flame_day gery"></div>
-            <div class="flame_day white"></div>
-            <div class="flame_day gery"></div>
-            <div class="flame_day white"></div>
-            <div class="flame_day gery"></div>
         </div>
     </div>
 </body>
@@ -400,10 +416,10 @@
     });
     var pick_day = $('.picker_day');
     pick_day.on('contextmenu', function(event){
-        if(event.ctrlKey){
-            alert("!");
-            return;
-        }
+        // if(event.ctrlKey){
+        //     alert("!");
+        //     return;
+        // }
         var pick_obj = event.target;
         var s_year = $(pick_obj).attr("s_year");
         var s_month = $(pick_obj).attr("s_month");
@@ -441,6 +457,19 @@
                 // },200)
             }
         }
+    });
+    $('.desk_flame').on('mousewheel', function (event) {
+        var desk_flame = $('.desk_flame');
+        var s_h = desk_flame.attr("start_hour");
+        var e_h = desk_flame.attr("end_hour");
+        console.log(s_h+"+"+e_h);
+        setDeskflame(s_h-event.deltaY,e_h-event.deltaY);
+        // if(event.deltaY===1){
+        //     setDeskflame(s_h-1,e_h-1);
+        // }
+        // if(event.deltaY===-1){
+        //     setDeskflame(s_h+1,e_h+1);
+        // }
     });
 </script>
 </html>

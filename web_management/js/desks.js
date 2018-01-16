@@ -1,3 +1,8 @@
+$(document).ready(function () {
+    calendar_init();
+    // calendar_init(1504630861000);
+});
+
 var date_multi = [];
 
 function date_multi_choice(year, month, date, static_mode){
@@ -246,7 +251,36 @@ function page_example(id, status) {
     }
 }
 
-$(document).ready(function () {
-    calendar_init();
-    // calendar_init(1504630861000);
+$(window).on('resize', function(){
+    var desk_flame = $('.desk_flame');
+    setDeskflame(desk_flame.attr("start_hour"),desk_flame.attr("end_hour"));
 });
+
+function setDeskflame(start_h, end_h) {
+    if(!start_h)start_h = 0;
+    start_h = parseInt(start_h);
+    if(!end_h)end_h = 23;
+    end_h = parseInt(end_h);
+    if(start_h<0||start_h>23)return false;
+    if(end_h<0||end_h>23)return false;
+    if(start_h>end_h||end_h<start_h)return false;
+    var desk_flame = $('.desk_flame');
+    // var canvas_w = $('#desk_flame_canvas').width();
+    var canvas_h = $('#desk_flame_canvas').height();
+    var hour_block = end_h - start_h + 1;
+    var full_h = canvas_h / (hour_block / 24);
+    desk_flame.css('height',full_h);
+    var block_h = full_h / 24;
+    var repos_top = start_h * block_h * -1;
+    // desk_flame.css('top:', repos_top);
+    desk_flame.animate({
+        top: repos_top
+    },100);
+    desk_flame.attr("start_hour", start_h);
+    desk_flame.attr("end_hour", end_h);
+    // console.log("c_h:"+canvas_h);
+    // console.log("f_h:"+full_h);
+    // console.log("repos_top:"+repos_top);
+
+}
+

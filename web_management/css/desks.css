@@ -68,14 +68,28 @@
 
 }
 
-#desk_flame{
+#desk_flame_canvas{
     position: relative;
-    display: flex;
-    /*width: 1200px;*/
-    /*height: 900px;*/
     width: 100%;
     left: 0;
     height: calc(100% - 3rem);
+    top: 0;
+    overflow: hidden;
+    background-color: #252525;
+}
+
+.desk_flame{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#desk_flame{
+    position: relative;
+    display: flex;
+    width: 100%;
+    left: 0;
+    height: 100%;
     background-color: #969696;
 }
 
@@ -91,12 +105,33 @@
     opacity: 1;
 }
 
+#desk_flame_container{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    top: 3rem;
+    left: 0;
+    height: 100%;
+    /*background-color: #969696;*/
+}
+
+.flame_day_container{
+    float: left;
+    width: auto;
+    flex: 1;
+    height: calc(100%);
+    /*background-color: #eab978;*/
+    z-index: 50;
+    opacity: 1;
+}
+
 .hour_list{
     position: absolute;
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 100%;
+    z-index: 49;
 }
 
 .hour_box{
