@@ -246,21 +246,31 @@ function page_example(id, status) {
     //status: 0-return 1-next 2-current 3-other
     var page = $('#'+id+'');
     var animation_dur = 200;
+    // page.css({right: "-40rem"});
+    // page.removeClass('current_page');
+    // page.removeClass('pre_page');
+    // page.removeClass('next_page');
     switch (status){
         case 0:
             page.animate({
                 right: "20rem"
             },animation_dur);
+            // page.css({right: "0"});
+            // page.addClass('next_page');
             break;
         case 1:
             page.animate({
                 right: "-20rem"
             },animation_dur);
+            // page.css({right: "0"});
+            // page.addClass('pre_page');
             break;
         case 2:
             page.animate({
                 right: "0"
             },animation_dur);
+            // page.css({right: "20rem"});
+            // page.addClass('current_page');
             break;
         case 3:
             page.animate({

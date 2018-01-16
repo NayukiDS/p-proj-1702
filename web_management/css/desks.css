@@ -44,7 +44,8 @@
     width: 5.5rem;
     height: 2rem;
     top: 0.5rem;
-    right: 2rem;
+    /*right: 2rem;*/
+    margin-left: 20rem;
     color: white;
     background-color: rgb(212, 113, 116);
     border-radius: 0.3rem;

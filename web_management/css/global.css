@@ -216,6 +216,7 @@ body{
     height: 100%;
     /*background-color: #4cd964;*/
     right: -40rem;
+    transition: right 200ms;
 }
 
 .pre_page{
