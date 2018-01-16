@@ -399,6 +399,19 @@ body{
     background-color: #e5e4e8;
 }
 
+#warning_calendar{
+    position: absolute;
+    top: 0.2rem;
+    left: 0.4rem;
+    font-size: 1.2rem;
+    color: #d47174;
+    opacity: 0.8;
+}
+
+#warning_calendar_pick_limit{
+    display: none;
+}
+
 .panel_date_picker{
     position: absolute;
     width: 100%;

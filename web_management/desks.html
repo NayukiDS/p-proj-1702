@@ -47,6 +47,9 @@
                     </div>
                     <div class="basic_page current_page" id="page_date">
                         <div class="panel_date_picker" oncontextmenu="return false;">
+                            <div id="warning_calendar">
+                                <span id="warning_calendar_pick_limit">最多选取7个日期</span>
+                            </div>
                             <div id="panel_picker_year">
                                 NaN
                             </div>
@@ -54,9 +57,9 @@
                                 NaN
                             </div>
                             <div class="mouth_change">
-                                <i class="fa fa-angle-up" id="btn_month_up" aria-hidden="true"></i>
-                                &nbsp;
-                                <i class="fa fa-angle-down" id="btn_month_down" aria-hidden="true"></i>
+                                <!--<i class="fa fa-angle-up" id="btn_month_up" aria-hidden="true"></i>-->
+                                <!--&nbsp;-->
+                                <!--<i class="fa fa-angle-down" id="btn_month_down" aria-hidden="true"></i>-->
                             </div>
                             <div id="panel_picker_day">
                                 <div class="picker_week">
@@ -329,11 +332,15 @@
             search_container.animate({
                 opacity: "0"
             },200);
-            search_container.css("display","none");
+            setTimeout(function () {
+                search_container.css("display","none");
+            },200);
             search_container_none.animate({
                 opacity: "0"
             },200);
-            search_container_none.css("display","none");
+            setTimeout(function () {
+                search_container_none.css("display","none");
+            },200);
         }
     });
     search_input.on('input propertychange',function(){
@@ -425,7 +432,14 @@
                 date_multi_choice(s_year, s_month, s_date, true);
             }
         }else{
-            date_multi_choice(s_year, s_month, s_date);
+            var warning_obj = $('#warning_calendar_pick_limit');
+            if(date_multi_choice(s_year, s_month, s_date)){
+                animation_blink_hide(warning_obj, true);
+            }else{
+                // warning_obj.animate({
+                //
+                // },200)
+            }
         }
     });
 </script>

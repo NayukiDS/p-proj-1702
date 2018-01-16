@@ -1,4 +1,5 @@
 #desk{
+    overflow: hidden;
     position: absolute;
     height: 100%;
     z-index: 50;
@@ -15,9 +16,9 @@
     width: 100%;
     z-index: 51;
     background-color: #ffffff;
-    -webkit-box-shadow: 0 0 0.5rem 0 rgba(0,0,0,0.3);
-    -moz-box-shadow: 0 0 0.5rem 0 rgba(0,0,0,0.3);
-    box-shadow: 0 0 0.5rem 0 rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 0 1.5rem 0 rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 0 1.5rem 0 rgba(0,0,0,0.1);
+    box-shadow: 0 0 1.5rem 0 rgba(0,0,0,0.1);
     font-size: 1.2rem;
     color: #414141;
     user-select: none;
@@ -48,7 +49,7 @@
     background-color: rgb(212, 113, 116);
     border-radius: 0.3rem;
     cursor: pointer;
-    line-height: 2rem;
+    line-height: 1.8rem;
     text-align: center;
     transition: box-shadow 200ms;
 }
@@ -60,7 +61,7 @@
 }
 
 .desk_add_new span{
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 #date_current_cn{
@@ -74,7 +75,7 @@
     /*height: 900px;*/
     width: 100%;
     left: 0;
-    height: calc(100% - 4rem);
+    height: calc(100% - 3rem);
     background-color: #969696;
 }
 

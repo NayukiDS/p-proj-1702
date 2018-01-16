@@ -6,6 +6,7 @@ function date_multi_choice(year, month, date, static_mode){
     var repeat = false;
     var repeat_index = -1;
     var add_bool = false;
+    var add_max = false;
     for(var i=0;i<date_multi.length;i++) {
         if(ds.equalOBJ(date_multi[i])){
             repeat = true;
@@ -16,8 +17,13 @@ function date_multi_choice(year, month, date, static_mode){
         date_multi.splice(repeat_index,1);
         add_bool = false;
     }else{
-        date_multi.push(ds);
-        add_bool = true;
+        if(date_multi.length===7){
+            add_bool = false;
+            add_max = true;
+        }else{
+            date_multi.push(ds);
+            add_bool = true;
+        }
     }
     if(static_mode){
         var s_year = parseInt($('#panel_picker_year').html());
@@ -26,7 +32,8 @@ function date_multi_choice(year, month, date, static_mode){
     }else{
         calendar_init(Date.parse(year+"-"+month+"-"+date), undefined, undefined);
     }
-    return add_bool;
+    // return add_bool;
+    return add_max;
 }
 
 function calendar_init(init_ts, year, month) {
