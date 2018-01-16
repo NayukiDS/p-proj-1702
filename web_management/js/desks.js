@@ -329,8 +329,8 @@ function setDeskRowContent(event_list, index) {
         $(desk_flame_container[index]).append(
             "<div class='event'>"+value.name+"</div>"
         );
-        var value_time_start = parseInt(value.time[0]);
-        var value_time_end = parseInt(value.time[1]);
+        var value_time_start = mtime_hour_float_convert(value.time[0]);
+        var value_time_end = mtime_hour_float_convert(value.time[1]);
         var event_dur = value_time_end - value_time_start;
         var create_obj = $(desk_flame_container[index]).children();
 

@@ -120,7 +120,9 @@ function mtime_hour_float_convert(hour) {
     var mtime;
     if(typeof (hour)==='string'||!hour&&hour!==0){
         mtime = parseInt(hour);
-    }else{
+    }else if(typeof (hour)==='number'){
+        mtime = hour;
+    } else{
         return false;
     }
     mtime = parseInt(mtime/100) + ((mtime%100)/60);
