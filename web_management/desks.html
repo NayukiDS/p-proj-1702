@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/jquery.mousewheel.js"></script>
+    <script src="js/global.js"></script>
     <script src="js/desks.js"></script>
+    <script src="js/actions.js"></script>
 </head>
 <body>
     <div id="avatar_border">
@@ -17,7 +19,13 @@
     </div>
     <div class="user_panel">
         <div class="panel">
+            <div class="panel_loading">
+                <div id="panel_loading_progress">
+                    <div class="progress_animation"></div>
+                </div>
+            </div>
             <div class="panel_container">
+
                 <div class="user_info">
                     <span id="user_id">
                         14521216
@@ -147,14 +155,10 @@
                                 </div>
                             </div>
                             <div class="events"></div>
-                            <div class="events"></div>
-                            <div class="events"></div>
-                            <div class="events"></div>
-                            <div class="events"></div>
-                            <div class="events"></div>
-                            <div class="events"></div>
-                            <div class="events"></div>
-                            <div class="events"></div>
+                        </div>
+                        <div class="events_nomore">
+                            没有更多了
+                            <i class="fa fa-coffee" aria-hidden="true"></i>
                         </div>
                         <div id="custom_add_btn">
                             添加自定义日程|备忘
@@ -170,7 +174,7 @@
         </div>
 
     </div>
-    <div id="desk">
+    <div id="desk" class="left_container_full">
         <div class="desk_detail">
             <div class="desk_select">
                 <!--<i class="fa fa-chevron-down" aria-hidden="true"></i>-->
@@ -283,9 +287,13 @@
 </body>
 
 <script>
+    $('#avatar_border').on('touchstart click', function () {
+        panel_toggle();
+    });
     var search_input = $("#event_search_input");
     var custom_add_btn = $("#custom_add_btn");
     var search_container = $("#search_container");
+    var search_container_none = $(".events_nomore");
     search_input.focus(function () {
         var hr_obj = $(".search_bar").children('hr');
         hr_obj.animate({
@@ -302,6 +310,10 @@
             opacity: "1"
         },200);
         search_container.css("display","block");
+        search_container_none.animate({
+            opacity: "1"
+        },200);
+        search_container_none.css("display","block");
     });
     search_input.blur(function () {
         var hr_obj = $(".search_bar").children('hr');
@@ -318,6 +330,10 @@
                 opacity: "0"
             },200);
             search_container.css("display","none");
+            search_container_none.animate({
+                opacity: "0"
+            },200);
+            search_container_none.css("display","none");
         }
     });
     search_input.on('input propertychange',function(){

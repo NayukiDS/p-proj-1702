@@ -11,6 +11,14 @@ body{
     /*transition: text-shadow 200ms, color 200ms;*/
 }
 
+.left_container_full{
+    width: 100%;
+}
+
+.left_container_half{
+    width: calc(100% - 20rem);
+}
+
 .user_panel{
     position: absolute;
     z-index: 0;
@@ -236,6 +244,7 @@ body{
 
 #event_search_input:focus{
     color: #e5e4e8;
+    outline: none;
 }
 
 #event_search_input:hover{
@@ -271,13 +280,28 @@ body{
 }
 
 .events_nomore{
+    position: relative;
+    /*left: -0.5rem;*/
     width: 100%;
     text-align: center;
     color: #969696;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    transition: color 200ms;
 }
 
 .events_nomore i{
-    color: #c7b8ab;
+    opacity: 0;
+    transition: color 200ms, opacity 200ms;
+}
+
+.events_nomore:hover{
+    color: #e5e4e8;
+}
+
+.events_nomore:hover i{
+    opacity: 1;
+    color: #4e4439;
 }
 
 .events{
