@@ -1,16 +1,16 @@
 var Comment = require('../models/Comment');
 
-function comment_delete(e_id) {
+function comment_delete(c_id) {
     var res_json = {
         err: false,
         err_msg: "",
         result: []
     };
     var that = this;
-    this.RmComment = function (event_id, callback) {
+    this.RmComment = function (comment_id, callback) {
 
         var promise = Comment.find({
-            'event_id': event_id.toString()
+            '_id': comment_id.toString()
         })
             .remove()
             .exec();
@@ -23,6 +23,7 @@ function comment_delete(e_id) {
             function (err) {
                 res_json.err = true;
                 res_json.err_msg = err;
+                callback();
             }
         )
 
@@ -34,8 +35,20 @@ function comment_delete(e_id) {
         return res_json;
     };
     this.do_exec = function (callback) {
-        // var promise = Comment
-        that.RmComment(e_id, callback)
+        var promise = Comment.find({
+            '_id': c_id
+        });
+        promise.then(
+            function (result) {
+                that.RmComment(c_id, callback);
+            },
+            function (err) {
+                res_json.err = true;
+                res_json.err_msg = err;
+                callback();
+            }
+        )
+
     }
 }
 
