@@ -10,21 +10,21 @@
         "type": "class",
         "day": "tu",
         "week": [1,2,3,4,5,6,7,8,9,10],
-        "time": [3,4],
+        "time": [1000,1140],
         "location": "综合楼103"
       },
       {
         "type": "practical",
         "day": "tu",
         "week": [11,12,13,14,15],
-        "time": [3,4],
+        "time": [1000,1140],
         "location": "综合楼103"
       },
       {
         "type": "exam",
         "day": "tu",
         "week": [16,17],
-        "time": [3,4],
+        "time": [1000,1140],
         "location": "综合楼103"
       }
     ]
@@ -40,14 +40,14 @@
         "type": "class",
         "day": "mo",
         "week": [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
-        "time": [3,4],
+        "time": [1330,1510],
         "location": "综合楼501"
       },
       {
         "type": "exam",
         "day": "mo",
         "week": [18],
-        "time": [3,4],
+        "time": [1330,1510],
         "location": "综合楼207"
       }
     ]
@@ -63,14 +63,14 @@
         "type": "class",
         "day": "tu",
         "week": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
-        "time": [1,2],
+        "time": [800,940],
         "location": "二教503"
       },
       {
         "type": "exam",
         "day": "fr",
         "week": [17],
-        "time": [3,4],
+        "time": [1000,1140],
         "location": "综合楼107"
       }
     ]
@@ -84,16 +84,16 @@
     "schedule": [
       {
         "type": "class",
-        "day": "tu",
+        "day": "we",
         "week": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
-        "time": [3,4],
+        "time": [1000,1140],
         "location": "二教107"
       },
       {
         "type": "exam",
         "day": "mo",
         "week": [18],
-        "time": [1,2],
+        "time": [800,940],
         "location": "综合楼106"
       }
     ]
@@ -109,14 +109,14 @@
         "type": "practical",
         "day": "we",
         "week": [17,19,20],
-        "time": [2,8],
+        "time": [900,1800],
         "location": "天成科技大厦 10层"
       },
       {
         "type": "practical",
         "day": "fr",
         "week": [19,20],
-        "time": [2,8],
+        "time": [900,1800],
         "location": "天成科技大厦 10层"
       }
     ]
