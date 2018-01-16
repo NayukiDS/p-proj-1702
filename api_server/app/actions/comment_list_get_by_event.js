@@ -2,6 +2,11 @@ var Comment = require('../models/Comment');
 var json_add = require('../module/json_add');
 
 function comment_list_get_by_event(e_id) {
+    var res_json = {
+        err: false,
+        err_msg: "",
+        result: []
+    };
     var that = this;
     this.getComment = function (event_id, callback) {
 
@@ -18,17 +23,22 @@ function comment_list_get_by_event(e_id) {
 
         promise.then(
             function (result) {
-                console.log(result);
+                res_json.result = result;
                 callback();
             },
             function (err) {
-                console.log("error" + err);
+                res_json.err = true;
+                res_json.err_msg = err;
+                callback();
             }
         )
 
     };
     this.reformat = function () {
 
+    };
+    this.getResult = function () {
+        return res_json;
     };
     this.do_exec = function (callback) {
         // var promise = Comment
