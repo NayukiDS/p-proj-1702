@@ -136,11 +136,26 @@
     top: 0rem;
     height: 10rem;
     width: 90%;
-    left: 5%;
-    border-radius: 0.3rem;
-    opacity: 0.5;
+    right: 2%;
+    /*border-radius: 0.3rem;*/
+    opacity: 0;
     background-color: #7caaed;
-    box-shadow: 0 0 0.5rem rgba(0,0,0,0.5);
+
+
+    transition: opacity 200ms;
+}
+
+.event_show{
+    opacity: 0.8;
+    margin-top: 0;
+    box-shadow: 0 0 0.1rem rgba(0,0,0,0);
+    transition: opacity 200ms, margin-top 200ms, box-shadow 200ms;
+}
+
+.event_show:hover{
+    opacity: 1;
+    margin-top: -0.8rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.25);
 }
 
 .hour_list{
