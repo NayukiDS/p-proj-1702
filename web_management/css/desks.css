@@ -11,7 +11,7 @@
 
 .desk_detail{
     position: relative;
-    height: 4rem;
+    height: 3rem;
     width: 100%;
     z-index: 51;
     background-color: #ffffff;
@@ -27,28 +27,29 @@
 .desk_select{
     display: inline;
     position: relative;
-    top: 1rem;
+    top: 0.7rem;
     margin-left: 2rem;
 }
 
 .desk_date_picker{
     display: inline;
     position: relative;
-    top: 1rem;
+    top: 0.7rem;
     margin-left: 2rem;;
 }
 
 .desk_add_new{
     position: absolute;
     width: 5.5rem;
-    height: 2.5rem;
-    top: 0.7rem;
+    height: 2rem;
+    top: 0.5rem;
     right: 2rem;
     color: white;
     background-color: rgb(212, 113, 116);
     border-radius: 0.3rem;
     cursor: pointer;
-
+    line-height: 2rem;
+    text-align: center;
     transition: box-shadow 200ms;
 }
 
@@ -59,9 +60,6 @@
 }
 
 .desk_add_new span{
-    position: absolute;
-    top: 0.3rem;
-    left: 0.8rem;
     font-size: 1.2rem;
 }
 
