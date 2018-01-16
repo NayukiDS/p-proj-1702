@@ -1,12 +1,41 @@
+var date_multi = [];
+
+function date_multi_choice(year, month, date, static_mode){
+    if(static_mode===undefined) static_mode = false;
+    var ds = new Date_obj_short(year, month ,date);
+    var repeat = false;
+    var repeat_index = -1;
+    var add_bool = false;
+    for(var i=0;i<date_multi.length;i++) {
+        if(ds.equalOBJ(date_multi[i])){
+            repeat = true;
+            repeat_index = i;
+        }
+    }
+    if(repeat){
+        date_multi.splice(repeat_index,1);
+        add_bool = false;
+    }else{
+        date_multi.push(ds);
+        add_bool = true;
+    }
+    if(static_mode){
+        var s_year = parseInt($('#panel_picker_year').html());
+        var s_month = parseInt($('#panel_picker_month').html());
+        calendar_init(undefined, s_year, s_month);
+    }else{
+        calendar_init(Date.parse(year+"-"+month+"-"+date), undefined, undefined);
+    }
+    return add_bool;
+}
+
 function calendar_init(init_ts, year, month) {
     var date = null;
-    var view_mode = false;
     if(!init_ts){
         date = new Date;
     }
     else{
         date = new Date(init_ts);
-        // console.log("date:"+date);
     }
     if(typeof(year)==='number'&&typeof(month)==='number'){
         if(month>12){
@@ -16,7 +45,6 @@ function calendar_init(init_ts, year, month) {
             year -= 1;
             month += 12;
         }
-        view_mode = true;
         date = Date.parse(year+"-"+month+"-1");
         date = new Date(date);
     }
@@ -81,7 +109,6 @@ function calendar_init(init_ts, year, month) {
         date_obj = new Date_obj(c_year, c_month, i, undefined, undefined, true);
         date_array.push(date_obj.exportOBJ());
         i++;
-        // console.log(init_ts);
     }
 
     i = 1;
@@ -91,16 +118,18 @@ function calendar_init(init_ts, year, month) {
         i++;
     }
 
-    // console.log(date_array);
-
     var week_container = $('#panel_picker_day').children();
     var index = 0;
     week_container.each(function (i_w, v_w) {
-        if(i_w===0)return;
+        if(i_w===0){return;}
         var day_container = $(v_w).children();
         day_container.each(function (i_d ,v_d) {
-            if(i_d===0)return;
+            if(i_d===0){
+                $(v_d).attr("calendar_type", "row_head");
+                return;
+            }
             var date_obj = date_array[index];
+            $(v_d).attr("calendar_type", "day");
             $(v_d).removeClass("day_highlight");
             $(v_d).removeClass("day_today");
             $(v_d).removeClass("day_current");
@@ -116,12 +145,37 @@ function calendar_init(init_ts, year, month) {
             if(date_obj.s_year===today_year&&date_obj.s_month===today_month&&date_obj.s_date===today_date){
                 $(v_d).addClass("day_today");
             }
-            if(date_obj.s_year===c_year&&date_obj.s_month===c_month&&date_obj.s_date===c_date&&!view_mode){
-                $(v_d).addClass("day_current");
+            // if(date_obj.s_year===c_year&&date_obj.s_month===c_month&&date_obj.s_date===c_date&&!view_mode){
+            //     $(v_d).addClass("day_current");
+            // }
+            for(var i=0;i<date_multi.length;i++){
+                if(date_multi[i].equalOBJ(date_obj)){
+                    $(v_d).addClass("day_current");
+                    break;
+                }
             }
             index++;
        })
     });
+}
+
+function Date_obj_short(year, month, date){
+    this.s_year = year;
+    this.s_month = month;
+    this.s_date = date;
+    this.s_ts = Date.parse(this.s_year + "-" + this.s_month + "-" + this.s_date);
+    var that = this;
+    this.exportOBJ = function () {
+        return{
+            s_year: that.s_year,
+            s_month: that.s_month,
+            s_date: that.s_date,
+            s_ts: that.s_ts
+        }
+    };
+    this.equalOBJ = function (obj) {
+        return obj.s_year==that.s_year&&obj.s_month==that.s_month&&obj.s_date==that.s_date;
+    }
 }
 
 function Date_obj(year, month, date, wday, sweek, highlight){
@@ -142,7 +196,6 @@ function Date_obj(year, month, date, wday, sweek, highlight){
             s_highlight: that.s_highlight
         }
     }
-
 }
 
 function convert_wday(day) {
@@ -152,7 +205,7 @@ function convert_wday(day) {
     return day;
 }
 
-function covert_month_cross_year(month){
+function desk_load_select(){
 
 }
 

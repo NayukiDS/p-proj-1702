@@ -45,8 +45,8 @@
                     <div class="basic_page" id="page_event_detail">
 
                     </div>
-                    <div class="basic_page" id="page_date">
-                        <div class="panel_date_picker">
+                    <div class="basic_page current_page" id="page_date">
+                        <div class="panel_date_picker" oncontextmenu="return false;">
                             <div id="panel_picker_year">
                                 NaN
                             </div>
@@ -133,7 +133,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="basic_page current_page" id="page_add">
+                    <div class="basic_page" id="page_add">
                         <div class="search_bar" >
                             <i class="fa fa-search" aria-hidden="true"></i>
                             <input id="event_search_input" type="text" maxlength="14" placeholder="课程代码 周边活动">
@@ -197,7 +197,7 @@
 
             </div>
             <div class="desk_add_new">
-                <span><i class="fa fa-angle-down" aria-hidden="true"></i>&nbsp;添加</span>
+                <span><i class="fa fa-binoculars" aria-hidden="true"></i>&nbsp;添加</span>
             </div>
         </div>
         <div id="desk_flame">
@@ -391,7 +391,12 @@
             $('#next_page').html(html_p);
         }
     });
-    $('.picker_day').on('click', function(event){
+    var pick_day = $('.picker_day');
+    pick_day.on('contextmenu', function(event){
+        if(event.ctrlKey){
+            alert("!");
+            return;
+        }
         var pick_obj = event.target;
         var s_year = $(pick_obj).attr("s_year");
         var s_month = $(pick_obj).attr("s_month");
@@ -401,6 +406,26 @@
             calendar_init(Date.parse(date_str));
         }else{
             console.log("date load err");
+        }
+    });
+    $('.picker_day').on('click', function(event){
+        var pick_obj = event.target;
+        var s_year = $(pick_obj).attr("s_year");
+        var s_month = $(pick_obj).attr("s_month");
+        var s_date = $(pick_obj).attr("s_date");
+        var calendar_type = $(pick_obj).attr("calendar_type");
+        if(calendar_type==="row_head"){
+            date_multi = [];
+            var row = $($(event.target).parent().children());
+            for(var i=0;i<row.length-1;i++){
+                var day_html = $(row[i+1]);
+                s_year = day_html.attr("s_year");
+                s_month = day_html.attr("s_month");
+                s_date = day_html.attr("s_date");
+                date_multi_choice(s_year, s_month, s_date, true);
+            }
+        }else{
+            date_multi_choice(s_year, s_month, s_date);
         }
     });
 </script>
