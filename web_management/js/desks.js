@@ -1,6 +1,11 @@
 $(document).ready(function () {
-    calendar_init();
+    get_semester_list();
     // calendar_init(1504630861000);
+});
+
+$(window).on('resize', function(){
+    var desk_flame = $('.desk_flame');
+    setDeskflame(desk_flame.attr("start_hour"),desk_flame.attr("end_hour"));
 });
 
 var date_multi = [];
@@ -29,6 +34,11 @@ function date_multi_choice(year, month, date, static_mode){
             date_multi.push(ds);
             add_bool = true;
         }
+    }
+    if(!add_max){
+        setDeskRow();
+        get_events_by_date(date_multi, date_multi.length-1)
+        // get_events_by_date_array();
     }
     if(static_mode){
         var s_year = parseInt($('#panel_picker_year').html());
@@ -136,11 +146,14 @@ function calendar_init(init_ts, year, month) {
         if(i_w===0){return;}
         var day_container = $(v_w).children();
         day_container.each(function (i_d ,v_d) {
+            var date_obj = date_array[index];
             if(i_d===0){
                 $(v_d).attr("calendar_type", "row_head");
+                var row_week = date_sweek_convert(date_obj.s_year+"-"+date_obj.s_month+"-"+date_obj.s_date);
+                // var row_week = date_sweek_convert(date_obj.exportFormatDate());
+                $(v_d).html(row_week.week);
                 return;
             }
-            var date_obj = date_array[index];
             $(v_d).attr("calendar_type", "day");
             $(v_d).removeClass("day_highlight");
             $(v_d).removeClass("day_today");
@@ -177,6 +190,10 @@ function Date_obj_short(year, month, date){
     this.s_date = date;
     this.s_ts = Date.parse(this.s_year + "-" + this.s_month + "-" + this.s_date);
     var that = this;
+    this.exportFormatDate = function () {
+        var date_format = that.s_year + "-" + that.s_month + "-" + that.s_date;
+        return date_format;
+    };
     this.exportOBJ = function () {
         return{
             s_year: that.s_year,
@@ -198,6 +215,10 @@ function Date_obj(year, month, date, wday, sweek, highlight){
     this.s_sweek = sweek;
     this.s_highlight = highlight;
     var that = this;
+    this.exportFormatDate = function () {
+        var date_format = that.s_year + "-" + that.s_month + "-" + that.s_date;
+        return date_format;
+    };
     this.exportOBJ = function () {
         return{
             s_year: that.s_year,
@@ -251,11 +272,6 @@ function page_example(id, status) {
     }
 }
 
-$(window).on('resize', function(){
-    var desk_flame = $('.desk_flame');
-    setDeskflame(desk_flame.attr("start_hour"),desk_flame.attr("end_hour"));
-});
-
 function setDeskflame(start_h, end_h) {
     if(!start_h)start_h = 0;
     start_h = parseInt(start_h);
@@ -278,9 +294,51 @@ function setDeskflame(start_h, end_h) {
     },100);
     desk_flame.attr("start_hour", start_h);
     desk_flame.attr("end_hour", end_h);
+    desk_flame.attr("full_height", full_h);
     // console.log("c_h:"+canvas_h);
     // console.log("f_h:"+full_h);
     // console.log("repos_top:"+repos_top);
 
 }
 
+function setDeskRow() {
+    var desk_flame = $('#desk_flame').children();
+    var desk_flame_container = $('#desk_flame_container').children();
+    for(var i=0;i<7;i++){
+        if(!date_multi[i]){
+            $(desk_flame[i]).css('width','0');
+            $(desk_flame_container[i]).css('width','0');
+        }else{
+            $(desk_flame[i]).css('width','100%');
+            $(desk_flame_container[i]).css('width','100%');
+        }
+    }
+}
+
+function setDeskRowContent(event_list, index) {
+    var desk_flame_container = $('#desk_flame_container').children();
+    if(!event_list[index])return false;
+    var events = event_list[index];
+    var desk_flame = $('.desk_flame');
+    var full_h = parseInt(desk_flame.attr('full_height'));
+
+    $(desk_flame_container[index]).html("");
+    events.forEach( function (value, c_index) {
+        console.log(c_index);
+        console.log(value);
+        $(desk_flame_container[index]).append(
+            "<div class='event'>"+value.name+"</div>"
+        );
+        var value_time_start = parseInt(value.time[0]);
+        var value_time_end = parseInt(value.time[1]);
+        var event_dur = value_time_end - value_time_start;
+        var create_obj = $(desk_flame_container[index]).children();
+
+        var css_height = event_dur * (full_h / 24);
+        var css_top = value_time_start * (full_h / 24);
+        console.log(css_top);
+        console.log(css_height);
+        $(create_obj[c_index]).css('height', css_height);
+        $(create_obj[c_index]).css('top', css_top);
+    })
+}
