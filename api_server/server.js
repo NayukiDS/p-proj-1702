@@ -53,6 +53,26 @@ router.route('/test_api')
     .get(function (req, res){
         res.json({info:"GET form Mamoru"});});
 
+var Apply_auth_wechat = require('./app/actions/apply_auth_wechat');
+router.route('/api_key')
+    .get(function (req, res) {
+        var js_code = req.query.code;
+        if(!js_code){
+            res.status(400).json({info:"invalid js_code"});
+            return;
+        }
+        var aaw = new Apply_auth_wechat(js_code);
+        aaw.do_exec(rc);
+
+        function rc() {
+            var res_str = aaw.getResult();
+            res.send(res_str);
+        }
+        // console.log(req.query.code);
+        // res.json({info: "boy next door"});
+
+    });
+
 var Course_list_get_by_week = require('./app/actions/course_list_get_by_week');
 var date_sweek_convert = require('./app/module/date_sweek_convert');
 router.route('/course_list')
