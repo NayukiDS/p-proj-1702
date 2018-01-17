@@ -49,6 +49,8 @@ router.use(function(req, res, next){
 
 app.use('/p-proj-1702',router);
 
+var KEY = require('./app/module/KEY');
+
 router.route('/test_api')
     .get(function (req, res){
         res.json({info:"GET form Mamoru"});});
@@ -133,6 +135,46 @@ router.route('/semester_list')
 //             }
 //         }
 //     });
+var user_create = require('./app/actions/user_create');
+router.route('/user')
+    .post(function (req, res) {
+        var api_key = req.query.api_key;
+        var name = req.query.name;
+        var avatar_url = req.query.avatar_url;
+        var bind_id = req.query.bind_id;
+        var open_id = undefined;
+        if(api_key){
+            var key = new KEY(api_key);
+            open_id = key.getOID();
+            if(!open_id){
+                res.status(401).json({info:"authentication failed"});
+                return;
+            }
+        }else{
+            res.status(400).json({info:"invalid api_key"});
+            return;
+        }
+        if(!name){
+            res.status(400).json({info:"invalid api_key"});
+            return;
+        }
+        if(!avatar_url){
+            res.status(400).json({info:"invalid api_key"});
+            return;
+        }
+
+        var user_new = new user_create(open_id, avatar_url, name, bind_id);
+        user_new.do_exec(rc);
+
+        function rc() {
+            var res_json = user_new.getResult();
+            if(res_json.err){
+                res.status(res_json.status).json({info:res_json.err_msg});
+                return;
+            }
+            res.json(res_json.result);
+        }
+    });
 
 var event_list_get_by_sweek = require('./app/actions/event_list_get_by_sweek');
 router.route('/event_list')
