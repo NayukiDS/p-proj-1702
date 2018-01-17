@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
     wechat_id: String,
+    wechat_avatar: { type: String },
     bind_id: String,
     name: { type: String, default: "未命名用户" },
     admin: { type: Boolean, default: false },
