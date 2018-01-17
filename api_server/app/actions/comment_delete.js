@@ -1,4 +1,4 @@
-var Comment = require('../models/Comment');
+var Comment = require('../models/comment');
 
 function comment_delete(c_id) {
     var res_json = {

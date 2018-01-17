@@ -1,4 +1,4 @@
-var Comment = require('../models/Comment');
+var Comment = require('../models/comment');
 var json_add = require('../module/json_add');
 
 function comment_list_get_by_event(e_id) {

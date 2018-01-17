@@ -1,4 +1,4 @@
-var Comment = require('../models/Comment');
+var Comment = require('../models/comment');
 
 function comment_create(pre_comment, user_id, event_id, content) {
     var res_json = {
