@@ -23,7 +23,24 @@ function comment_list_get_by_event(e_id) {
 
         promise.then(
             function (result) {
-                res_json.result = result;
+                var res_array = [];
+                result.forEach(function(doc){
+                    if(doc.available){
+                        var res_filter = {
+                            _id: doc._id,
+                            pre_comment: doc.pre_comment,
+                            user_id: doc.user_detail[0]._id,
+                            user_bind: doc.user_detail[0].bind_id,
+                            user_name: doc.user_detail[0].name,
+                            user_avatar: doc.user_detail[0].avatar,
+                            add_ts: doc.add_ts,
+                            focus: doc.focus,
+                            content: doc.content
+                        };
+                        res_array.push(res_filter)
+                    }
+                });
+                res_json.result = res_array;
                 callback();
             },
             function (err) {
@@ -44,6 +61,17 @@ function comment_list_get_by_event(e_id) {
         // var promise = Comment
         that.getComment(e_id, callback)
     }
+}
+
+function comment_obj(_id, pre_comment, user_id, user_name, user_avatar, add_ts, focus, content){
+    this._id = _id;
+    this.pre_comment = pre_comment;
+    this.user_id = user_id;
+    this.user_name = user_name;
+    this.user_avatar = user_avatar;
+    this.add_ts = add_ts;
+    this.focus = focus;
+    this.content = content;
 }
 
 module.exports = comment_list_get_by_event;
