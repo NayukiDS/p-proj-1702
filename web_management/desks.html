@@ -151,7 +151,7 @@
                                     1454585
                                 </div>
                                 <div class="events_name">
-                                    新日暮里 健身课
+                                    课程 DEMO
                                 </div>
                                 <div class="event_status_bar">
                                     <i class="fa fa-rss" aria-hidden="true"></i>
@@ -180,7 +180,8 @@
         </div>
 
     </div>
-    <div id="desk" class="left_container_half">
+    <!--<div id="desk" class="left_container_half">-->
+    <div id="desk" class="left_container_full">
         <div class="desk_detail">
             <div class="desk_select">
                 <!--<i class="fa fa-chevron-down" aria-hidden="true"></i>-->
@@ -474,6 +475,18 @@
         // if(event.deltaY===-1){
         //     setDeskflame(s_h+1,e_h+1);
         // }
+    });
+    $('#new_event_btn').on('click', function (event) {
+        if($('#desk').hasClass('left_container_full')){
+            $('#desk').removeClass('left_container_full');
+            $('#desk').addClass('left_container_half');
+        }
+        page_example('page_date',0);
+        page_example('page_add',2);
+    });
+    $('#pre_page_btn').on('click', function (event) {
+        page_example('page_date',2);
+        page_example('page_add',1);
     });
 </script>
 </html>

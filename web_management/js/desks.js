@@ -25,6 +25,7 @@ function date_multi_choice(year, month, date, static_mode){
     }
     if(repeat){
         date_multi.splice(repeat_index,1);
+        event_multi.splice(repeat_index,1);
         add_bool = false;
     }else{
         if(date_multi.length===7){

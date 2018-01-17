@@ -47,7 +47,7 @@ function get_events_by_date(date_short, index) {
                 // if(!isEquivalent(event_multi[index],res_data.event_list)){
                     event_multi[index]=res_data.event_list;
                 // }
-                setDeskflame(0,23);
+                setDeskflame(6,19);
                 setDeskRowContent(event_multi, index);
                 get_events_by_date(date_short, index+1);
             }
