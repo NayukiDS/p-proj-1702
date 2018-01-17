@@ -73,42 +73,66 @@ router.route('/api_key')
 
     });
 
-var Course_list_get_by_week = require('./app/actions/course_list_get_by_week');
-var date_sweek_convert = require('./app/module/date_sweek_convert');
-router.route('/course_list')
-    .get(function (req, res) {
-        // var d_id = req.query.desk_id;
-        var d_id = "5a520da6d70e0138f4673fd0";
-        var date = req.query.date;
-        console.log("req_date:"+date);
-        var date_json = date_sweek_convert(date);
-        if(!date_json.valid){
-            res.status(400).json({info:"invalid date."});
-            return;
-        }
-        var course_get = new Course_list_get_by_week(d_id,date_json.semester,date_json.week);
-        course_get.do_exec(rc);
 
-        function rc() {
-            var res_json = course_get.getResult();
-            var res_obj = {
-                semester: date_json.semester,
-                week: date_json.week,
-                day: date_json.day,
-                date: date_json.date,
-                event_list: []
-            };
-            var course_list = res_json[date_json.day];
-            if(course_list!==undefined){
-                res_obj.event_list = course_list.courses;
-                res.json(res_obj);
-                // res.json(course_list.courses);
-            }else {
-                // res.status(500).json([]);
-                res.json(res_obj);
+router.route('/semester_list')
+    .get(function (req, res) {
+        var date_json = [
+            {
+                semester: 201601,
+                start_week: "2016/9/7"
+            },
+            {
+                semester: 201602,
+                start_week: "2017/2/22"
+            },
+            {
+                semester: 201701,
+                start_week: "2017/9/4"
+            },
+            {
+                semester: 201702,
+                start_week: "2018/3/26"
             }
-        }
+        ];
+        res.json(date_json);
     });
+
+// var Course_list_get_by_week = require('./app/actions/course_list_get_by_week');
+// var date_sweek_convert = require('./app/module/date_sweek_convert');
+// router.route('/course_list')
+//     .get(function (req, res) {
+//         // var d_id = req.query.desk_id;
+//         var d_id = "5a520da6d70e0138f4673fd0";
+//         var date = req.query.date;
+//         console.log("req_date:"+date);
+//         var date_json = date_sweek_convert(date);
+//         if(!date_json.valid){
+//             res.status(400).json({info:"invalid date."});
+//             return;
+//         }
+//         var course_get = new Course_list_get_by_week(d_id,date_json.semester,date_json.week);
+//         course_get.do_exec(rc);
+//
+//         function rc() {
+//             var res_json = course_get.getResult();
+//             var res_obj = {
+//                 semester: date_json.semester,
+//                 week: date_json.week,
+//                 day: date_json.day,
+//                 date: date_json.date,
+//                 event_list: []
+//             };
+//             var course_list = res_json[date_json.day];
+//             if(course_list!==undefined){
+//                 res_obj.event_list = course_list.courses;
+//                 res.json(res_obj);
+//                 // res.json(course_list.courses);
+//             }else {
+//                 // res.status(500).json([]);
+//                 res.json(res_obj);
+//             }
+//         }
+//     });
 
 var event_list_get_by_sweek = require('./app/actions/event_list_get_by_sweek');
 router.route('/event_list')
@@ -224,27 +248,4 @@ router.route('/comment_list')
             }
             res.json(res_json.result);
         }
-    });
-
-router.route('/semester_list')
-    .get(function (req, res) {
-        var date_json = [
-            {
-                semester: 201601,
-                start_week: "2016/9/7"
-            },
-            {
-                semester: 201602,
-                start_week: "2017/2/22"
-            },
-            {
-                semester: 201701,
-                start_week: "2017/9/4"
-            },
-            {
-                semester: 201702,
-                start_week: "2018/3/26"
-            }
-        ];
-        res.json(date_json);
     });
