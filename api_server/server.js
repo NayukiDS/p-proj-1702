@@ -151,6 +151,7 @@ router.route('/user')
         var bind_id = req.query.bind_id;
         var open_id = undefined;
         if(api_key){
+            api_key = api_key.split(' ').join('+');
             var key = new KEY(api_key);
             open_id = key.getOID();
             if(!open_id){
