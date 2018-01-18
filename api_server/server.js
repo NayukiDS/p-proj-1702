@@ -75,7 +75,7 @@ router.route('/api_key')
                 return;
             }
             res_str = key.getAPI_KEY("wechat", undefined, res_obj.open_id);
-            res.send(res_str);
+            res.json({open_id:res_str});
         }
     });
 
