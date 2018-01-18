@@ -162,6 +162,31 @@ function KEY(api_key) {
     this.sessionAbort = function () {
 
     };
+    this.getQRdata = function (client) {
+        var qr_data = {
+            client: client,
+            ts: Date.now()
+        };
+        var cipher = crypto.createCipheriv('aes-128-cbc', key, iv);
+        var data_crypted = cipher.update(JSON.stringify(qr_data), 'utf-8', 'binary');
+        data_crypted += cipher.final('binary');
+        data_crypted = new Buffer(data_crypted, 'binary').toString('base64');
+        return data_crypted;
+    };
+    this.checkQRvalid = function (data) {
+        var qr_data = that.decrypt(data);
+        try{
+            qr_data = JSON.parse(qr_data);
+        }catch (e){
+            return false;
+        }
+        var valid_ts = qr_data.ts;
+        if(valid_ts>0){
+            return qr_data.client;
+        }else{
+            return false;
+        }
+    }
 }
 
 module.exports = KEY;

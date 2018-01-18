@@ -115,6 +115,13 @@ router.route('/user')
         if(!auth_client){
             res.status(400).json({info:"invalid auth_client"});
             return;
+        }else{
+            var check = new KEY();
+            var auth_client = check.checkQRvalid(auth_client);
+            if(!auth_client){
+                res.status(401).json({info:"auth_client unavailable"});
+                return;
+            }
         }
         api_key = api_key.split(' ').join('+');
         var key = new KEY(api_key);
