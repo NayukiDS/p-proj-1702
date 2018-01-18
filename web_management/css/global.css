@@ -3,6 +3,10 @@
     font-family: "Microsoft YaHei Light";
 }
 
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: rgba(255, 255, 255, 0.51);
+}
+
 body{
     margin: 0 0 0 0;
 }
@@ -535,4 +539,10 @@ body{
 
 .logout:hover i{
     color: #d47174;
+}
+
+.noflame_input{
+    outline: none;
+    border-style: none;
+    background-color: transparent;
 }

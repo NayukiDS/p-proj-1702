@@ -6,6 +6,7 @@
     <title>Desk</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/desks.css">
+    <link rel="stylesheet" href="css/add_panel.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/jquery-ui.min.css">
     <script src="js/jquery-3.2.1.min.js"></script>
@@ -15,6 +16,7 @@
     <script src="js/global.js"></script>
     <script src="js/desks.js"></script>
     <script src="js/actions.js"></script>
+    <script src="js/snowfall.js"></script>
 </head>
 <body>
     <div id="avatar_border">
@@ -307,6 +309,352 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="add_panel">
+        <div class="add_info_container">
+            <div class="add_info">
+                <div class="snow_container">
+                    <div id="snow">
+                        <script type='text/javascript'>
+                            var collectOnMe = document.querySelectorAll('.collectonme'),
+                                buttons = document.getElementsByTagName("input");
+
+                            for(var i = 0; i < collectOnMe.length; i++){
+                                collectOnMe[i].style.display = "none";
+                            }
+                        </script>
+                        <div id="kanzaki1">
+                            <div class="kanzaki1 kanzaki_box">
+                                <script type='text/javascript'>
+                                    snowFall.snow(document.querySelector('.kanzaki1'));
+                                    snowFall.snow(document.querySelector('.kanzaki1'), "clear");
+                                    snowFall.snow(document.querySelector('.kanzaki1'), {image : "./res/kanzaki1.png",
+                                        flakeCount : 6, minSize: 80, maxSize:120, minSpeed:5, maxSpeed:10});
+                                </script>
+                            </div>
+                            <div class="kanzaki2 kanzaki_box">
+                                <script type='text/javascript'>
+                                    snowFall.snow(document.querySelector('.kanzaki2'));
+                                    snowFall.snow(document.querySelector('.kanzaki2'), "clear");
+                                    snowFall.snow(document.querySelector('.kanzaki2'), {image : "./res/kanzaki2.png",
+                                        flakeCount : 6, minSize: 80, maxSize:120, minSpeed:5, maxSpeed:10});
+                                </script>
+                            </div>
+                            <div class="kanzaki3 kanzaki_box">
+                                <script type='text/javascript'>
+                                    snowFall.snow(document.querySelector('.kanzaki3'));
+                                    snowFall.snow(document.querySelector('.kanzaki3'), "clear");
+                                    snowFall.snow(document.querySelector('.kanzaki3'), {image : "./res/kanzaki3.png",
+                                        flakeCount : 6, minSize: 80, maxSize:120, minSpeed:5, maxSpeed:10});
+                                </script>
+                            </div>
+                            <div class="kanzaki4 kanzaki_box">
+                                <script type='text/javascript'>
+                                    snowFall.snow(document.querySelector('.kanzaki4'));
+                                    snowFall.snow(document.querySelector('.kanzaki4'), "clear");
+                                    snowFall.snow(document.querySelector('.kanzaki4'), {image : "./res/kanzaki4.png",
+                                        flakeCount : 6, minSize: 80, maxSize:120, minSpeed:5, maxSpeed:10});
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="add_input_container">
+                    <div class="add_info_id">
+                        <input type="text" id="add_info_id_input" class="noflame_input" placeholder="课程代码">
+                    </div>
+                    <div class="add_info_name">
+                        <!--<span class="add_info_name_title">课程名称</span>-->
+                        <input type="text" id="add_info_name_input" class="noflame_input input_can" placeholder="课程名称">
+                    </div>
+                    <div class="add_info_semester">
+                        <input type="text" id="add_info_semester_input" class="noflame_input input_can" placeholder="学期">
+                    </div>
+                    <div class="add_info_professor_id">
+                        <input type="text" id="add_info_professor_id_input" class="noflame_input input_can" placeholder="教师编号">
+                    </div>
+                    <div class="add_info_professor_name">
+                        <input type="text" id="add_info_professor_name_input" class="noflame_input input_can" placeholder="教师名称">
+                    </div>
+                </div>
+            </div>
+            <div class="add_date_picker_container">
+                <div class="add_date_group">
+                    <div class="week_detail">
+                        <div class="week_wday" wday="1">周一</div>
+                        <input type="text" class="week_location noflame_input input_can" placeholder="授课地点">
+                    </div>
+                    <div class="week_pick_filter">
+                        <div class="week_time_pick_start time_pick_btn" time_c="1">第1节</div>
+                        <span style="position:absolute; right: 29.8rem; font-size:2rem; top:-0.3rem; opacity: 0.3">-</span>
+                        <div class="week_time_pick_end time_pick_btn" time_c="2">第2节</div>
+                        <div class="week_filter_xx filter_btn">选修</div>
+                        <div class="week_filter_ss filter_btn">标准</div>
+                        <div class="week_filter_sw filter_btn">单周</div>
+                        <div class="week_filter_dw filter_btn">双周</div>
+                        <div class="week_filter_cl filter_btn">清空</div>
+                    </div>
+                    <div class="week_group">
+                        <div class="week_single">1</div>
+                        <div class="week_single">2</div>
+                        <div class="week_single">3</div>
+                        <div class="week_single">4</div>
+                        <div class="week_single">5</div>
+                        <div class="week_single">6</div>
+                        <div class="week_single">7</div>
+                        <div class="week_single">8</div>
+                        <div class="week_single">9</div>
+                        <div class="week_single">10</div>
+                        <div class="week_single">11</div>
+                        <div class="week_single">12</div>
+                        <div class="week_single">13</div>
+                        <div class="week_single">14</div>
+                        <div class="week_single">15</div>
+                        <div class="week_single">16</div>
+                        <div class="week_single">17</div>
+                        <div class="week_single">18</div>
+                        <div class="week_single">19</div>
+                        <div class="week_single">20</div>
+                        <div class="week_single">21</div>
+                        <div class="week_single">22</div>
+                    </div>
+                    <div class="date_group_new date_group_btn">+</div>
+                    <div class="date_group_remove date_group_btn">-</div>
+                </div>
+            </div>
+        </div>
+        <div id="candidate_panel">
+
+        </div>
+        <script>
+            $(document).on('click', '.week_single', function (event) {
+                var click_obj = $(event.target);
+                if(click_obj.hasClass('week_single_checked')){
+                    click_obj.removeClass('week_single_checked');
+                }else{
+                    click_obj.addClass('week_single_checked');
+                }
+            });
+            $(document).on('click', '.week_filter_sw', function (event) {
+               var click_obj = $(event.target);
+               var p_obj = click_obj.parent();
+               p_obj = p_obj.parent();
+               var week_obj = p_obj.find('.week_group');
+               week_obj = week_obj.children();
+                week_obj.each(function (index, obj) {
+                    $(obj).removeClass('week_single_checked');
+                   if((index+1)%2!==0&&index<18){
+                       $(obj).addClass('week_single_checked');
+                   }
+               })
+            });
+            $(document).on('click', '.week_filter_dw', function (event) {
+                var click_obj = $(event.target);
+                var p_obj = click_obj.parent();
+                p_obj = p_obj.parent();
+                var week_obj = p_obj.find('.week_group');
+                week_obj = week_obj.children();
+                week_obj.each(function (index, obj) {
+                    $(obj).removeClass('week_single_checked');
+                    if((index+1)%2===0&&index<18){
+                        $(obj).addClass('week_single_checked');
+                    }
+                })
+            });
+            $(document).on('click', '.week_filter_ss', function (event) {
+                var click_obj = $(event.target);
+                var p_obj = click_obj.parent();
+                p_obj = p_obj.parent();
+                var week_obj = p_obj.find('.week_group');
+                week_obj = week_obj.children();
+                week_obj.each(function (index, obj) {
+                    $(obj).removeClass('week_single_checked');
+                    if(index<18){
+                        $(obj).addClass('week_single_checked');
+                    }
+                })
+            });
+            $(document).on('click', '.week_filter_cl', function (event) {
+                var click_obj = $(event.target);
+                var p_obj = click_obj.parent();
+                p_obj = p_obj.parent();
+                var week_obj = p_obj.find('.week_group');
+                week_obj = week_obj.children();
+                week_obj.each(function (index, obj) {
+                    $(obj).removeClass('week_single_checked');
+                })
+            });
+            $(document).on('click', '.week_filter_xx', function (event) {
+                var click_obj = $(event.target);
+                var p_obj = click_obj.parent();
+                p_obj = p_obj.parent();
+                var week_obj = p_obj.find('.week_group');
+                week_obj = week_obj.children();
+                week_obj.each(function (index, obj) {
+                    $(obj).removeClass('week_single_checked');
+                    if(index>2&&index<13){
+                        $(obj).addClass('week_single_checked');
+                    }
+                })
+            });
+            $(document).on('mousewheel', '.week_time_pick_start', function (event) {
+                var start_obj = $(event.target);
+                var end_obj = start_obj.parent();
+                end_obj = end_obj.find('.week_time_pick_end');
+                var start_c = parseInt(start_obj.attr("time_c"));
+                var end_c = parseInt(end_obj.attr("time_c"));
+                if(event.deltaY===1){
+                    if(start_c<10){
+                        start_c += 1;
+                        start_obj.attr("time_c", start_c);
+                        $(start_obj).html("第"+start_obj.attr("time_c")+"节");
+                        end_c = start_c + 1;
+                        end_obj.attr("time_c", end_c);
+                        $(end_obj).html("第"+end_obj.attr("time_c")+"节");
+                    }else if(start_c===10){
+                        start_c += 1;
+                        start_obj.attr("time_c", start_c);
+                        $(start_obj).html("第"+start_obj.attr("time_c")+"节");
+                    }
+                }
+                if(event.deltaY===-1){
+                    if(start_c>1){
+                        start_c -= 1;
+                        start_obj.attr("time_c", start_c);
+                        $(start_obj).html("第"+start_obj.attr("time_c")+"节");
+                    }
+                }
+            });
+            $(document).on('mousewheel', '.week_time_pick_end', function (event) {
+                var end_obj = $(event.target);
+                var start_obj = end_obj.parent();
+                start_obj = start_obj.find('.week_time_pick_start');
+                var start_c = parseInt(start_obj.attr("time_c"));
+                var end_c = parseInt(end_obj.attr("time_c"));
+                if(event.deltaY===1){
+                    if(end_c<11){
+                        end_c += + 1;
+                        end_obj.attr("time_c", end_c);
+                        $(end_obj).html("第"+end_obj.attr("time_c")+"节");
+                    }
+                }
+                if(event.deltaY===-1){
+                    if(end_c>2){
+                        end_c -= 1;
+                        end_obj.attr("time_c", end_c);
+                        $(end_obj).html("第"+end_obj.attr("time_c")+"节");
+
+                        start_c = end_c - 1;
+                        start_obj.attr("time_c", start_c);
+                        $(start_obj).html("第"+start_obj.attr("time_c")+"节");
+                    }else if(end_c===2){
+                        end_c -= 1;
+                        end_obj.attr("time_c", end_c);
+                        $(end_obj).html("第"+end_obj.attr("time_c")+"节");
+                    }
+                }
+            });
+            $(document).on('mousewheel', '.week_wday', function (event) {
+                var obj = $(event.target);
+                var wday = parseInt(obj.attr("wday"));
+                if(event.deltaY===1){
+                    if(wday<7)wday+=1;
+                }
+                if(event.deltaY===-1){
+                    if(wday>1)wday-=1;
+                }
+                var wday_str = "";
+                switch (wday){
+                    case 1:
+                        wday_str = "周一";
+                        break;
+                    case 2:
+                        wday_str = "周二";
+                        break;
+                    case 3:
+                        wday_str = "周三";
+                        break;
+                    case 4:
+                        wday_str = "周四";
+                        break;
+                    case 5:
+                        wday_str = "周五";
+                        break;
+                    case 6:
+                        wday_str = "周六";
+                        break;
+                    case 7:
+                        wday_str = "周日";
+                        break;
+                }
+                obj.attr("wday", wday);
+                obj.html(wday_str);
+            });
+            var can_panel = $('#candidate_panel');
+            $(document).on('blur', '.input_can', function (event) {
+                can_panel.animate({
+                    right: "-20rem"
+                },200);
+            });
+            $(document).on('focus', '.input_can', function (event) {
+                can_panel.animate({
+                    right: "2%"
+                },200);
+            });
+            $(document).on('click', '.date_group_new', function (event) {
+                var click_obj = $(event.target);
+                var p_obj = click_obj.parent();
+                p_obj = p_obj.parent();
+                $(p_obj).append("<div class=\"add_date_group\">\n" +
+                    "                    <div class=\"week_detail\">\n" +
+                    "                        <div class=\"week_wday\" wday=\"1\">周一</div>\n" +
+                    "                        <input type=\"text\" class=\"week_location noflame_input input_can\" placeholder=\"授课地点\">\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"week_pick_filter\">\n" +
+                    "                        <div class=\"week_time_pick_start time_pick_btn\" time_c=\"1\">第1节</div>\n" +
+                    "                        <span style=\"position:absolute; right: 29.8rem; font-size:2rem; top:-0.3rem; opacity: 0.3\">-</span>\n" +
+                    "                        <div class=\"week_time_pick_end time_pick_btn\" time_c=\"2\">第2节</div>\n" +
+                    "                        <div class=\"week_filter_xx filter_btn\">选修</div>\n" +
+                    "                        <div class=\"week_filter_ss filter_btn\">标准</div>\n" +
+                    "                        <div class=\"week_filter_sw filter_btn\">单周</div>\n" +
+                    "                        <div class=\"week_filter_dw filter_btn\">双周</div>\n" +
+                    "                        <div class=\"week_filter_cl filter_btn\">清空</div>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"week_group\">\n" +
+                    "                        <div class=\"week_single\">1</div>\n" +
+                    "                        <div class=\"week_single\">2</div>\n" +
+                    "                        <div class=\"week_single\">3</div>\n" +
+                    "                        <div class=\"week_single\">4</div>\n" +
+                    "                        <div class=\"week_single\">5</div>\n" +
+                    "                        <div class=\"week_single\">6</div>\n" +
+                    "                        <div class=\"week_single\">7</div>\n" +
+                    "                        <div class=\"week_single\">8</div>\n" +
+                    "                        <div class=\"week_single\">9</div>\n" +
+                    "                        <div class=\"week_single\">10</div>\n" +
+                    "                        <div class=\"week_single\">11</div>\n" +
+                    "                        <div class=\"week_single\">12</div>\n" +
+                    "                        <div class=\"week_single\">13</div>\n" +
+                    "                        <div class=\"week_single\">14</div>\n" +
+                    "                        <div class=\"week_single\">15</div>\n" +
+                    "                        <div class=\"week_single\">16</div>\n" +
+                    "                        <div class=\"week_single\">17</div>\n" +
+                    "                        <div class=\"week_single\">18</div>\n" +
+                    "                        <div class=\"week_single\">19</div>\n" +
+                    "                        <div class=\"week_single\">20</div>\n" +
+                    "                        <div class=\"week_single\">21</div>\n" +
+                    "                        <div class=\"week_single\">22</div>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"date_group_new date_group_btn\">+</div>\n" +
+                    "                    <div class=\"date_group_remove date_group_btn\">-</div>\n" +
+                    "                </div>");
+            });
+            $(document).on('click', '.date_group_remove', function (event) {
+                var click_obj = $(event.target);
+                var p_obj = click_obj.parent();
+                $(p_obj).remove();
+            });
+        </script>
     </div>
 </body>
 
