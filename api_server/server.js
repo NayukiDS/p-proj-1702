@@ -182,7 +182,7 @@ router.route('/user')
                 return;
             }
             // res.json(res_json.result);
-            new_key = key.getAPI_KEY(res_json.result._id, 'wechat', res_json.wechat_id);
+            new_key = key.getAPI_KEY('wechat', res_json.result._id , res_json.wechat_id);
             key.sessionSave(res_json.result._id, 'wechat', new_key, rc_save);
         }
 
@@ -191,7 +191,52 @@ router.route('/user')
         }
     });
 
+var user_info = require('./app/actions/user_info');
+router.route('/user_info')
+    .get(function (req, res) {
+        var api_key = req.query.api_key;
+        var user_id = req.query.user_id;
+        var key;
+        var owner = false;
+        var u_info = undefined;
+
+        if(api_key){
+            api_key = api_key.split(' ').join('+');
+            key = new KEY(api_key);
+            key.reset_key_data();
+            if(!user_id){
+                user_id = key.getUser_id();
+            }
+            if(user_id===key.getUser_id()){
+                owner = true;
+            }
+            key.sessionCheck(api_key, co);
+        }else{
+            res.status(400).json({info:"invalid api_key"});
+        }
+
+        function co() {
+            if(key.getRes_sessionCheck()){
+                console.log(user_id);
+                u_info = new user_info(user_id, owner);
+                u_info.do_exec(rc);
+            }else{
+                res.status(401).json({info:"invalid api_key"});
+            }
+        }
+
+        function rc() {
+            var res_json = u_info.getResult();
+            if(res_json.err){
+                res.status(500).json({info:res_json.err_msg});
+                return;
+            }
+            res.json(res_json.result);
+        }
+    });
+
 var event_list_get_by_sweek = require('./app/actions/event_list_get_by_sweek');
+var date_sweek_convert = require('./app/module/date_sweek_convert');
 router.route('/event_list')
     .get(function (req, res) {
         // var d_id = req.query.desk_id;

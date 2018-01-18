@@ -139,21 +139,22 @@ function KEY(api_key) {
         client.on("error", function (err) {
             res_json.err = true;
             res_json.err_msg = err;
-            client.quit();
+            // client.quit();
             that.res_sessionCheck = res_json;
         });
         client.get(api_key, function (err, reply) {
             if(err){
                 res_json.err = true;
                 res_json.err_msg = err;
-                client.quit();
+                // client.quit();
                 that.res_sessionCheck = res_json;
             }else{
                 valid_ts = parseInt(reply);
                 if(valid_ts>Date.now())res_json.valid = true;
-                client.quit();
+                // client.quit();
                 that.res_sessionCheck =  res_json;
             }
+            callback();
         });
     };
     this.getRes_sessionCheck = function () {
