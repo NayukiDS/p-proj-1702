@@ -103,44 +103,37 @@ router.route('/semester_list')
         res.json(date_json);
     });
 
-// var Course_list_get_by_week = require('./app/actions/course_list_get_by_week');
-// var date_sweek_convert = require('./app/module/date_sweek_convert');
-// router.route('/course_list')
-//     .get(function (req, res) {
-//         // var d_id = req.query.desk_id;
-//         var d_id = "5a520da6d70e0138f4673fd0";
-//         var date = req.query.date;
-//         console.log("req_date:"+date);
-//         var date_json = date_sweek_convert(date);
-//         if(!date_json.valid){
-//             res.status(400).json({info:"invalid date."});
-//             return;
-//         }
-//         var course_get = new Course_list_get_by_week(d_id,date_json.semester,date_json.week);
-//         course_get.do_exec(rc);
-//
-//         function rc() {
-//             var res_json = course_get.getResult();
-//             var res_obj = {
-//                 semester: date_json.semester,
-//                 week: date_json.week,
-//                 day: date_json.day,
-//                 date: date_json.date,
-//                 event_list: []
-//             };
-//             var course_list = res_json[date_json.day];
-//             if(course_list!==undefined){
-//                 res_obj.event_list = course_list.courses;
-//                 res.json(res_obj);
-//                 // res.json(course_list.courses);
-//             }else {
-//                 // res.status(500).json([]);
-//                 res.json(res_obj);
-//             }
-//         }
-//     });
 var user_create = require('./app/actions/user_create');
 router.route('/user')
+    .get( function (req, res) {
+        var api_key = req.query.api_key;
+        var auth_client = req.query.auth_client;
+        if(!api_key){
+            res.status(400).json({info:"invalid api_key"});
+            return;
+        }
+        if(!auth_client){
+            res.status(400).json({info:"invalid auth_client"});
+            return;
+        }
+        api_key = api_key.split(' ').join('+');
+        var key = new KEY(api_key);
+        if(!key.reset_key_data()){
+            res.status(400).json({info:"invalid api_key format"});
+            return;
+        }
+        var new_key = key.getAPI_KEY(auth_client, key.getUser_id(),key.getOID());
+        key.sessionSave(undefined, undefined, new_key, rc);
+
+        function rc() {
+            var res_json = key.getRes_sessionSave();
+            if(res_json.err){
+                res.status(500).json({info:res_json.err_msg});
+                return;
+            }
+            res.json({info: "success"});
+        }
+    })
     .post(function (req, res) {
         var api_key = req.query.api_key;
         var name = req.query.name;
@@ -186,7 +179,7 @@ router.route('/event_list')
         // var d_id = req.query.desk_id;
         var d_id = "5a520da6d70e0138f4673fd0";
         var date = req.query.date;
-        console.log("req_date:"+date);
+        // console.log("req_date:"+date);
         var date_json = date_sweek_convert(date);
         if(!date_json.valid){
             res.status(400).json({info:"invalid date."});
