@@ -82,7 +82,6 @@ router.route('/api_key')
         }
     });
 
-
 router.route('/semester_list')
     .get(function (req, res) {
         var date_json = [
@@ -153,6 +152,7 @@ router.route('/user')
         if(api_key){
             api_key = api_key.split(' ').join('+');
             var key = new KEY(api_key);
+            key.reset_key_data();
             open_id = key.getOID();
             if(!open_id){
                 res.status(401).json({info:"authentication failed"});
@@ -174,13 +174,20 @@ router.route('/user')
         var user_new = new user_create(open_id, avatar_url, name, bind_id);
         user_new.do_exec(rc);
 
+        var new_key;
         function rc() {
             var res_json = user_new.getResult();
             if(res_json.err){
                 res.status(res_json.status).json({info:res_json.err_msg});
                 return;
             }
-            res.json(res_json.result);
+            // res.json(res_json.result);
+            new_key = key.getAPI_KEY(res_json.result._id, 'wechat', res_json.wechat_id);
+            key.sessionSave(res_json.result._id, 'wechat', new_key, rc_save);
+        }
+
+        function rc_save() {
+            res.json({api_key: new_key});
         }
     });
 
