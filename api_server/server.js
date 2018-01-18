@@ -70,11 +70,13 @@ router.route('/api_key')
             var res_str = aaw.getResult();
             var key = new KEY();
             var res_obj = JSON.parse(res_str);
-            res.send(key.getAPI_KEY("wechat", undefined, res_obj.open_id));
+            if(res_obj.errcode){
+                res.status(401).json(res_obj);
+                return;
+            }
+            res_str = key.getAPI_KEY("wechat", undefined, res_obj.open_id);
+            res.send(res_str);
         }
-        // console.log(req.query.code);
-        // res.json({info: "boy next door"});
-
     });
 
 
