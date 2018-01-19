@@ -45,7 +45,15 @@ var router = express.Router();
 
 router.use(function(req, res, next){
     // console.log('something happening...');
-    console.log(req.method+" http request from:"+req.ip+" which request "+req.originalUrl);
+    var date = new Date();
+    console.log(
+        "-------------------------------\n" +
+        date + "\n" +
+        req.method + " request from:\n" +
+        req.ip+" which requested\n" +
+        req.originalUrl+
+        "-------------------------------\n"
+    );
     next();
 });
 
