@@ -51,7 +51,7 @@ router.use(function(req, res, next){
         date + "\n" +
         req.method + " request from:\n" +
         req.ip+" which requested\n" +
-        req.originalUrl+
+        req.originalUrl + "\n" +
         "-------------------------------\n"
     );
     next();
