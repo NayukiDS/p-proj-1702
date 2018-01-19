@@ -47,12 +47,12 @@ router.use(function(req, res, next){
     // console.log('something happening...');
     var date = new Date();
     console.log(
-        "-------------------------------\n" +
+        "---------------------------------------------\n" +
         date + "\n" +
         req.method + " request from:\n" +
         req.ip+" which requested\n" +
-        req.originalUrl + "\n" +
-        "-------------------------------\n"
+        req.originalUrl
+        // "-------------------------------\n"
     );
     next();
 });
@@ -255,8 +255,12 @@ router.route('/event_list')
         // var d_id = req.query.desk_id;
         var d_id = "5a520da6d70e0138f4673fd0";
         var date = req.query.date;
-        // console.log("req_date:"+date);
+        var api_key = req.query.api_key;
         var date_json = date_sweek_convert(date);
+        if(!api_key){
+            res.status(400).json({info:"invalid api_key."});
+            return;
+        }
         if(!date_json.valid){
             res.status(400).json({info:"invalid date."});
             return;
