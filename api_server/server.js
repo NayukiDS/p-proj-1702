@@ -146,9 +146,13 @@ router.route('/user')
     })
     .post(function (req, res) {
         var api_key = req.query.api_key;
+        if(!api_key) api_key = req.body.api_key;
         var name = req.query.name;
+        if(!name) name = req.body.name;
         var avatar_url = req.query.avatar_url;
+        if(!avatar_url) avatar_url = req.body.avatar_url;
         var bind_id = req.query.bind_id;
+        if(!bind_id) bind_id = req.body.bind_id;
         var open_id = undefined;
         if(api_key){
             api_key = api_key.split(' ').join('+');
@@ -298,9 +302,13 @@ router.route('/comment_list')
     })
     .post(function (req, res) {
         var pre_comment_id = req.query.pre_comment_id;
+        if(!pre_comment_id) pre_comment_id = req.body.pre_comment_id;
         var user_id = req.query.user_id;
+        if(!user_id) user_id = req.body.user_id;
         var event_id = req.query.event_id;
+        if(!event_id) event_id = req.body.event_id;
         var content = req.query.content;
+        if(!content) content = req.body.content;
 
         if(!pre_comment_id){
             // res.status(400).json({info:"invalid pre_comment_id"});
