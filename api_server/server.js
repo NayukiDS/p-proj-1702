@@ -44,7 +44,8 @@ app.listen(port);
 var router = express.Router();
 
 router.use(function(req, res, next){
-    console.log('something happening...');
+    // console.log('something happening...');
+    console.log(req.method+" http request from:"+req.ip+" which request "+req.originalUrl);
     next();
 });
 
@@ -222,7 +223,6 @@ router.route('/user_info')
 
         function co() {
             if(key.getRes_sessionCheck()){
-                console.log(user_id);
                 u_info = new user_info(user_id, owner);
                 u_info.do_exec(rc);
             }else{
