@@ -164,11 +164,11 @@ router.route('/user')
             return;
         }
         if(!name){
-            res.status(400).json({info:"invalid api_key"});
+            res.status(400).json({info:"invalid name"});
             return;
         }
         if(!avatar_url){
-            res.status(400).json({info:"invalid api_key"});
+            res.status(400).json({info:"invalid avatar_url"});
             return;
         }
 

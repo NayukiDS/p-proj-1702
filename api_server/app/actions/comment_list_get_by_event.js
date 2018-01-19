@@ -17,7 +17,7 @@ function comment_list_get_by_event(e_id) {
         // .populate('user_c')
         .populate({
             path: 'user_detail',
-            select: 'name bind_id'
+            select: 'name bind_id wechat_avatar'
         })
         .exec();
 
@@ -26,13 +26,14 @@ function comment_list_get_by_event(e_id) {
                 var res_array = [];
                 result.forEach(function(doc){
                     if(doc.available){
+                        console.log(doc);
                         var res_filter = {
                             _id: doc._id,
                             pre_comment: doc.pre_comment,
                             user_id: doc.user_detail[0]._id,
                             user_bind: doc.user_detail[0].bind_id,
                             user_name: doc.user_detail[0].name,
-                            user_avatar: doc.user_detail[0].avatar,
+                            user_avatar: doc.user_detail[0].wechat_avatar,
                             add_ts: doc.add_ts,
                             focus: doc.focus,
                             content: doc.content
