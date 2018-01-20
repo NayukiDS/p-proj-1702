@@ -83,6 +83,55 @@
     border-radius: 0.5rem;
     box-shadow: 0 0 5rem rgba(0, 0, 0, 0.2);
     /*opacity: 0.2;*/
+
+    overflow: hidden;
+}
+
+.candidate_single{
+    position: relative;
+    height: 5rem;
+    color: #d47174;
+    background-color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 0 2rem rgba(212,113,116,0);
+    transition: color 100ms, background-color 100ms, box-shadow 100ms;
+}
+
+.candidate_single:hover{
+    color: white;
+    background-color: #d47174;
+    box-shadow: 0 0 3rem rgba(212,113,116,0.31);
+}
+
+.candidate_title{
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    font-size: 1.7rem;
+    opacity: 0.9;
+}
+
+.candidate_title_child{
+    position: absolute;
+    top: 0.7rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+
+.candidate_title_info{
+    position: absolute;
+    top: 3rem;
+    left: 1rem;
+    opacity: 0.5;
+}
+
+.candidate_cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
 
 .add_input_container{
@@ -93,12 +142,14 @@
     left: 10%;
 }
 
-
 #add_info_id_input{
     position: absolute;
     font-size: 4rem;
     color: white;
     z-index: 201;
+    /*width: 20rem;*/
+    font-style: italic;
+    opacity: 0.75;
 
     left: 0;
     top: 2.5rem;
@@ -109,6 +160,7 @@
     font-size: 6rem;
     color: white;
     z-index: 201;
+    /*width: 40rem;*/
 
     left: 17rem;
     top: 4rem;
@@ -119,6 +171,7 @@
     font-size: 3rem;
     color: white;
     z-index: 201;
+    /*width: 20rem;*/
 
     left: 0;
     top: 8.5rem;
@@ -197,6 +250,9 @@
     cursor: pointer;
     transition: color 100ms, background-color 100ms;
     box-shadow: 0 0 0.3rem rgba(234, 185, 120, 0.4);
+
+    user-select: none;
+    -moz-user-select: none;
 }
 
 .filter_btn:hover{
@@ -219,6 +275,9 @@
     cursor: pointer;
     transition: color 100ms, background-color 100ms;
     box-shadow: 0 0 0.3rem rgba(153, 187, 149, 0.4);
+
+    user-select: none;
+    -moz-user-select: none;
 }
 
 .time_pick_btn:hover{

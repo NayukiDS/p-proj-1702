@@ -425,9 +425,173 @@
             </div>
         </div>
         <div id="candidate_panel">
-
+            <div class="candidate_single">
+                <div class="candidate_title">贝奥兰迪</div>
+                <div class="candidate_title_child">猎天使 魔男</div>
+                <div class="candidate_title_info">我也是个广东人 所以我们是老乡</div>
+            </div>
+            <div class="candidate_single">
+                <div class="candidate_title">van darkholme</div>
+                <div class="candidate_title_child">VAN</div>
+                <div class="candidate_title_info">boy next door</div>
+            </div>
+            <div class="candidate_single">
+                <div class="candidate_title">木吉</div>
+                <div class="candidate_title_child">KAZUYA</div>
+                <div class="candidate_title_info">hohoho check it out</div>
+            </div>
         </div>
         <script>
+            var can_panel = $('#candidate_panel');
+            var can_evoke = undefined;
+            var can_evoke_mate = undefined;
+            $(document).on('click', '#add_info_name_input', function (event){
+                can_evoke = $(event.target);
+                can_panel.html("<div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">嵌入式系统</div>\n" +
+                    "                <div class=\"candidate_title_child\">韩德强</div>\n" +
+                    "                <div class=\"candidate_title_info\">#160018 2017-18第一学期</div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">计算机网络安全</div>\n" +
+                    "                <div class=\"candidate_title_child\">郑鲲</div>\n" +
+                    "                <div class=\"candidate_title_info\">#160020 2017-18第一学期</div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">操作系统</div>\n" +
+                    "                <div class=\"candidate_title_child\">张俪珩</div>\n" +
+                    "                <div class=\"candidate_title_info\">#150512 2016-17第二学期</div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>")
+            });
+            $(document).on('click', '#add_info_semester_input', function (event){
+                can_evoke = $(event.target);
+                can_panel.html("<div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">201701</div>\n" +
+                    "                <div class=\"candidate_title_child\"></div>\n" +
+                    "                <div class=\"candidate_title_info\">2017-2018 第一学期</div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">201702</div>\n" +
+                    "                <div class=\"candidate_title_child\"></div>\n" +
+                    "                <div class=\"candidate_title_info\">2017-2018 第一学期</div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>")
+            });
+            $(document).on('click', '#add_info_professor_id_input', function (event){
+                can_evoke = $(event.target);
+                can_panel.html("<div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">#108003</div>\n" +
+                    "                <div class=\"candidate_title_child\">李文正</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">#108004</div>\n" +
+                    "                <div class=\"candidate_title_child\">张丽珩</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">#108002</div>\n" +
+                    "                <div class=\"candidate_title_child\">郑鲲</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>")
+            });
+            $(document).on('click', '#add_info_professor_name_input', function (event){
+                can_evoke = $(event.target);
+                can_panel.html("<div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">李文正</div>\n" +
+                    "                <div class=\"candidate_title_child\">#108003</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">张丽珩</div>\n" +
+                    "                <div class=\"candidate_title_child\">#108004</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">郑鲲</div>\n" +
+                    "                <div class=\"candidate_title_child\">#108002</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>")
+            });
+            $(document).on('click', '.week_location', function (event){
+                can_evoke = $(event.target);
+                can_panel.html("<div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">第三教学楼</div>\n" +
+                    "                <div class=\"candidate_title_child\">101</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">第三教学楼</div>\n" +
+                    "                <div class=\"candidate_title_child\">102</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">第三教学楼</div>\n" +
+                    "                <div class=\"candidate_title_child\">201</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">第三教学楼</div>\n" +
+                    "                <div class=\"candidate_title_child\">202</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">第三教学楼</div>\n" +
+                    "                <div class=\"candidate_title_child\">301</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">第三教学楼</div>\n" +
+                    "                <div class=\"candidate_title_child\">302</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"candidate_single\">\n" +
+                    "                <div class=\"candidate_title\">汲学楼</div>\n" +
+                    "                <div class=\"candidate_title_child\">103</div>\n" +
+                    "                <div class=\"candidate_title_info\"></div>\n" +
+                    "                <div class=\"candidate_cover\"></div>\n" +
+                    "            </div>")
+            });
+            $(document).on('click', '.candidate_cover', function (event){
+                if(can_evoke.attr("id")==='add_info_professor_id_input'){
+                    // can_evoke_mate = can_evoke.parent();
+                    // can_evoke_mate = $(can_evoke_mate).find('#add_info_professor_name_input');
+                    can_evoke_mate = $('#add_info_professor_name_input');
+                }
+                if(can_evoke.attr("id")==='add_info_professor_name_input'){
+                    // can_evoke_mate = can_evoke.parent();
+                    // can_evoke_mate = $(can_evoke_mate).find('#add_info_professor_id_input');
+                    can_evoke_mate = $('#add_info_professor_id_input');
+                }
+                var title = $(event.target);
+                title= title.parent();
+                var title_mate = title.find(".candidate_title_child");
+                title = title.find(".candidate_title");
+                title = $(title).html();
+                title_mate = $(title_mate).html();
+                // console.log(title);
+                can_evoke.val(title);
+                if(can_evoke.hasClass('week_location')){
+                    can_evoke.val(title+" "+title_mate);
+                }
+                can_evoke_mate.val(title_mate);
+            });
             $(document).on('click', '.week_single', function (event) {
                 var click_obj = $(event.target);
                 if(click_obj.hasClass('week_single_checked')){
@@ -591,7 +755,6 @@
                 obj.attr("wday", wday);
                 obj.html(wday_str);
             });
-            var can_panel = $('#candidate_panel');
             $(document).on('blur', '.input_can', function (event) {
                 can_panel.animate({
                     right: "-20rem"
