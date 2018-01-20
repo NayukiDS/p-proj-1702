@@ -2,6 +2,7 @@
   {
     "_id": "14521216",
     "wechat_id": "wid01",
+    "wechat_avatar": "https://i1.hdslb.com/bfs/face/d5ff672d40cd0b3839daa3212e6e70c5b0cd7908.jpg",
     "bind_id": "14521216",
     "name": "Mamoru",
     "admin": false,
@@ -21,6 +22,7 @@
   {
     "_id": "14570119",
     "wechat_id": "wid02",
+    "wechat_avatar": "https://i0.hdslb.com/bfs/face/79f50b3d2f96c8943f15f76168706365e27b9f49.jpg",
     "bind_id": "14570119",
     "name": "小gay",
     "admin": false,
@@ -57,6 +59,7 @@
   {
     "_id": "118001",
     "wechat_id": "wid04",
+    "wechat_avatar": "https://i0.hdslb.com/bfs/face/21646ae557a9a7abc48485ed52a71dbbdec8471c.jpg",
     "bind_id": "118001",
     "name": "王卓峥",
     "admin": false,
@@ -92,6 +95,7 @@
   {
     "_id": "108002",
     "wechat_id": "wid05",
+    "wechat_avatar": "https://i0.hdslb.com/bfs/face/f433da1fcede25521a032ae8b565ee6b9e710381.jpg",
     "bind_id": "108002",
     "name": "郑鲲",
     "admin": false,
@@ -126,6 +130,7 @@
   {
     "_id": "108004",
     "wechat_id": "wid07",
+    "wechat_avatar": "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eowReibexHgAlE6h1Ao3U8ibWh7Wkup9F68N2VXOa3XJFfBPvzZBSUQQjZIuwFibYJqiahpAicF2ibdzlAw/0",
     "bind_id": "108004",
     "name": "张丽珩",
     "admin": false,

@@ -19,6 +19,7 @@ json_obj.forEach(function (t) {
     // if(t._id!==""||t._id!==undefined)user._id = t._id;
     // user._id = t._id;
     user.wechat_id = t.wechat_id;
+    user.wechat_avatar = t.wechat_avatar;
     user.bind_id = t.bind_id;
     user.name = t.name;
     user.admin = t.admin;
