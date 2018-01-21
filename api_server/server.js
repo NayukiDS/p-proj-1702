@@ -92,6 +92,22 @@ router.route('/api_key')
         }
     });
 
+router.route('/api_key/test')
+    .get(function (req, res) {
+        var client = req.query.client;
+        var user_id = req.query.user_id;
+        var open_id = req.query.open_id;
+
+        var key = new KEY();
+        var api_key = key.getAPI_KEY(client, user_id, open_id);
+        key.sessionSave(user_id, client, api_key, rc);
+
+        function rc() {
+            // var res_json = key.getRes_sessionSave();
+            res.json({key: api_key});
+        }
+    });
+
 router.route('/semester_list')
     .get(function (req, res) {
         var date_json = [
@@ -129,7 +145,7 @@ router.route('/user')
             return;
         }else{
             var check = new KEY();
-            var auth_client = check.checkQRvalid(auth_client);
+            auth_client = check.checkQRvalid(auth_client);
             if(!auth_client){
                 res.status(401).json({info:"auth_client unavailable"});
                 return;
@@ -230,11 +246,11 @@ router.route('/user_info')
         }
 
         function co() {
-            if(key.getRes_sessionCheck()){
+            if(key.getRes_sessionCheck().valid){
                 u_info = new user_info(user_id, owner);
                 u_info.do_exec(rc);
             }else{
-                res.status(401).json({info:"invalid api_key"});
+                res.status(401).json({info:"authentication failed"});
             }
         }
 
@@ -248,12 +264,94 @@ router.route('/user_info')
         }
     });
 
+var desk_new = require('./app/actions/desk_new');
+var desk_delete = require('./app/actions/desk_delete');
+router.route('/desk')
+    .post(function (req, res) {
+        var key, user_id, dn;
+        var api_key = req.query.api_key;
+        if(!api_key) api_key = req.body.api_key;
+        var pre_desk = req.query.pre_desk;
+        if(!pre_desk) pre_desk = req.body.pre_desk;
+        var name = req.query.name;
+        if(!name) name = req.body.name;
+        var bind_class = req.query.bind_class;
+        if(!bind_class) bind_class = req.body.bind_class;
+        if(api_key){
+            api_key = api_key.split(' ').join('+');
+            key = new KEY(api_key);
+            key.reset_key_data();
+            user_id = key.getUser_id();
+            key.sessionCheck(api_key, co);
+        }else{
+            res.status(400).json({info:"invalid api_key"});
+        }
+
+        function co() {
+            if(key.getRes_sessionCheck().valid){
+                dn = new desk_new(user_id, pre_desk, name, bind_class);
+                dn.do_exec(rc);
+            }else{
+                res.status(401).json({info:"authentication failed"});
+            }
+        }
+
+        function rc() {
+            var res_json = dn.getResult();
+            if(res_json.status!==200){
+                res.status(res_json.status).json(res_json.result);
+            }else{
+                res.status(res_json.status).json(res_json.err_msg);
+            }
+        }
+    })
+    .delete(function (req, res) {
+            var key, user_id, dd;
+            var api_key = req.query.api_key;
+            if(!api_key) api_key = req.body.api_key;
+            var desk_id = req.query.desk_id;
+            if(!desk_id) desk_id = req.body.desk_id;
+            if(api_key){
+                api_key = api_key.split(' ').join('+');
+                key = new KEY(api_key);
+                key.reset_key_data();
+                user_id = key.getUser_id();
+                key.sessionCheck(api_key, co);
+            }else{
+                res.status(400).json({info:"invalid api_key"});
+            }
+
+            function co() {
+                if(key.getRes_sessionCheck().valid){
+                    dd = new desk_delete(user_id, desk_id);
+                    dd.do_exec(rc);
+                }else{
+                    res.status(401).json({info:"authentication failed"});
+                }
+            }
+
+            function rc() {
+                var res_json = dd.getResult();
+                if(res_json.status===200){
+                    res.status(res_json.status).json({info: "success"});
+                }else{
+                    res.status(res_json.status).json({info:res_json.err_msg});
+                }
+            }
+    });
+
 var event_list_get_by_sweek = require('./app/actions/event_list_get_by_sweek');
 var date_sweek_convert = require('./app/module/date_sweek_convert');
+router.route('/1/2/3/4')
+    .get(function (req, res) {
+        console.log("boy next door");
+        res.json({info: "boy next door"});
+    });
+
 router.route('/event_list')
     .get(function (req, res) {
-        // var d_id = req.query.desk_id;
-        var d_id = "5a520da6d70e0138f4673fd0";
+        // var desk_id = req.query.desk_id;
+        var desk_id = "5a520da6d70e0138f4673fd0";
         var date = req.query.date;
         var api_key = req.query.api_key;
         var date_json = date_sweek_convert(date);
@@ -265,7 +363,7 @@ router.route('/event_list')
             res.status(400).json({info:"invalid date."});
             return;
         }
-        var event_get = new event_list_get_by_sweek(d_id,date_json.semester,date_json.week);
+        var event_get = new event_list_get_by_sweek(desk_id,date_json.semester,date_json.week);
         event_get.do_exec(rc);
 
         function rc() {
