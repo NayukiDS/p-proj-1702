@@ -1,7 +1,5 @@
 var User = require('../models/user');
 
-var User = require('../models/user');
-
 function user_info(u_id, owner) {
     var res_json = {
         err: false,
@@ -18,7 +16,7 @@ function user_info(u_id, owner) {
             function (result) {
                 if(Object.keys(result).length === 0){
                     res_json.err = true;
-                    res_json.err_msg = "Can not find user required by client in DB.";
+                    res_json.err_msg = "Could not find user required by client.";
                     res_json.status = 500;
                     callback();
                     return false;
