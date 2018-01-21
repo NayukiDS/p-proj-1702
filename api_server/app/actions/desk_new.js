@@ -49,8 +49,21 @@ function desk_new(user_id, pre_desk, name, bind_class) {
             function (result) {
                 console.log(result);
                 res_json.result = result;
-                callback();
-                return true;
+                User.findById(user_id, function (err, user) {
+                    if(err){
+                        res_json.err = true;
+                        res_json.err_msg = err;
+                        res_json.status = 500;
+                        callback();
+                        return false;
+                    }
+                    var desks = user.desks;
+                    desks.push(res_json.result._id);
+                    user.desks = desks;
+                    user.save();
+                    callback();
+                    return true;
+                });
             },
             function (err) {
                 res_json.err = true;
@@ -67,10 +80,6 @@ function desk_new(user_id, pre_desk, name, bind_class) {
     this.getResult = function () {
         return res_json;
     };
-    this.test = function () {
-        var desk = new Desk;
-        desk.pre_desk
-    }
 }
 
 module.exports = desk_new;
