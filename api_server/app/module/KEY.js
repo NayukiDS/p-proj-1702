@@ -107,7 +107,7 @@ function KEY(api_key) {
             that.res_sessionSave = res_json;
         });
         // client.set(api_key, valid_ts, function(err) {
-        client.set(user_id+user_client, api_key, function(err) {
+        client.set(api_key, user_id+user_client, function(err) {
             if(err){
                 res_json.err = true;
                 res_json.err_msg = err;
@@ -149,10 +149,17 @@ function KEY(api_key) {
                 // client.quit();
                 that.res_sessionCheck = res_json;
             }else{
-                valid_ts = parseInt(reply);
-                if(valid_ts>Date.now())res_json.valid = true;
-                // client.quit();
-                that.res_sessionCheck =  res_json;
+                if(!reply){
+                    res_json.err = true;
+                    res_json.err_msg = "";
+                    that.res_sessionCheck = res_json;
+                }else{
+                    valid_ts = parseInt(reply);
+                    if(valid_ts>Date.now())res_json.valid = true;
+                    if(reply.substr(reply.length-6,reply.length-1)==='wechat')res_json.valid = true;
+                    // client.quit();
+                    that.res_sessionCheck =  res_json;
+                }
             }
             callback();
         });
