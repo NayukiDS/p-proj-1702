@@ -342,11 +342,6 @@ router.route('/desk')
 
 var event_list_get_by_sweek = require('./app/actions/event_list_get_by_sweek');
 var date_sweek_convert = require('./app/module/date_sweek_convert');
-router.route('/1/2/3/4')
-    .get(function (req, res) {
-        console.log("boy next door");
-        res.json({info: "boy next door"});
-    });
 
 router.route('/event_list')
     .get(function (req, res) {
@@ -383,6 +378,49 @@ router.route('/event_list')
             }else {
                 // res.status(500).json([]);
                 res.json(res_obj);
+            }
+        }
+    });
+
+var event_search = require('./app/actions/event_search');
+router.route('/event_search')
+    .get(function (req, res) {
+        var keyword = req.query.keyword;
+        var filter_type = req.query.filter_type;
+        var filter_semester = req.query.filter_semester;
+        if(!keyword){
+            res.status(400).json({info:"invalid keyword."});
+            return;
+        }else{
+            keyword = decodeURI(keyword);
+        }
+        var f_type = ["0","1","2","3","4"];
+        if(!filter_type){
+            filter_type="0"
+        }else{
+            if(f_type.indexOf(filter_type)===-1){
+                res.status(400).json({info:"invalid filter_type."});
+                return;
+            }
+        }
+        if(!filter_semester){
+            filter_semester=201701;
+        }else{
+            filter_semester = parseInt(filter_semester);
+            if(!filter_semester){
+                res.status(400).json({info:"invalid filter_semester."});
+                return;
+            }
+        }
+        var es = new event_search(keyword, filter_type, filter_semester);
+        es.do_exec(rc);
+
+        function rc() {
+            var res_json = es.getResult();
+            if(res_json.status===200){
+                res.status(res_json.status).json(res_json.result);
+            }else{
+                res.status(res_json.status).json(res_json);
             }
         }
     });

@@ -7,6 +7,7 @@ var CourseSchema = new Schema({
     semester: { type: Number },
     professor_id: { type: String, ref: 'user' },
     student_r_id: { type: String, ref: 'user' },
+    e_course: { type: Boolean, default: false },
     schedule: [{ type: Schema.Types.Mixed }]//JSON string
 });
 

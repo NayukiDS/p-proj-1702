@@ -6,6 +6,7 @@ var EventCollectionSchema = new Schema({
     name: { type: String },
     professor_id: { type: String },
     creator_id: { type: String },
+    e_course: {type: Boolean },
     private: { type: Boolean },
     semester: { type: Number },
     schedule: [{ type: Schema.Types.Mixed }]//JSON string
