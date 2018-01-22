@@ -17,7 +17,7 @@ function event_search(keyword, type, semester) {
         var promise = EventCollection
             .find({
                 $or:[
-                    {_id: {$regex: reg}},
+                    // {_id: {$regex: reg}},
                     {name: {$regex: reg}}
                 ]
             }).exec();
