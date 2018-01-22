@@ -1,7 +1,5 @@
 var EventCollection = require('../models/events_collection');
 var User = require('../models/user');
-var Desk = require('../models/desk');
-var Comment = require('../models/comment');
 
 function event_search(keyword, type, semester) {
     var res_json = {

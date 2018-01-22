@@ -343,6 +343,131 @@ router.route('/desk')
 var event_list_get_by_sweek = require('./app/actions/event_list_get_by_sweek');
 var date_sweek_convert = require('./app/module/date_sweek_convert');
 
+var event_create_course = require('./app/actions/event_create_course');
+router.route('/event/course')
+    .post(function (req, res) {
+        var api_key = req.body.api_key;
+        var name = req.body.name;
+        var semester = req.body.semester;
+        var professor_id = req.body.professor_id;
+        var student_r_id = req.body.student_r_id;
+        var e_course = req.body.e_course;
+        var schedule = req.body.schedule;
+        var key, ecc;
+
+        if(!name){
+            res.status(400).json({info:"invalid name"});
+            return;
+        }
+        if(!semester){
+            res.status(400).json({info:"invalid semester"});
+            return;
+        }
+        if(!professor_id){
+            res.status(400).json({info:"invalid professor_id"});
+            return;
+        }
+        if(!student_r_id){
+            student_r_id = "";
+        }
+        if(!e_course){
+            e_course = false;
+            return;
+        }
+        if(!schedule){
+            res.status(400).json({info:"invalid schedule"});
+            return;
+        }
+
+        if(api_key){
+            api_key = api_key.split(' ').join('+');
+            key = new KEY(api_key);
+            key.reset_key_data();
+            key.sessionCheck(api_key, co);
+        }else{
+            res.status(400).json({info:"invalid api_key"});
+        }
+
+        function co() {
+            if(key.getRes_sessionCheck().valid){
+                ecc = new event_create_course(name, semester, professor_id, student_r_id, e_course, schedule);
+                ecc.do_exec(rc);
+            }else{
+                res.status(401).json({info:"authentication failed"});
+            }
+        }
+
+        function rc() {
+            var res_json = ecc.getResult();
+            if(res_json.status===200){
+                res.status(res_json.status).json({info: "success"});
+            }else{
+                res.status(res_json.status).json({info:res_json.err_msg});
+            }
+        }
+    });
+
+var event_create_event = require('./app/actions/event_create_event');
+router.route('/event/event')
+    .post(function (req, res) {
+        var api_key = req.body.api_key;
+        var name = req.body.name;
+        var semester = req.body.semester;
+        var v_private = req.body.private;
+        var schedule = req.body.schedule;
+        var content = req.body.content;
+        var key, creator_id, ece;
+
+        if(!name){
+            res.status(400).json({info:"invalid name"});
+            return;
+        }
+        if(!semester){
+            semester = "201701";
+            return;
+        }
+        if(!v_private){
+            v_private = false;
+            return;
+        }
+        if(!content){
+            content = "";
+            return;
+        }
+        if(!schedule){
+            res.status(400).json({info:"invalid schedule"});
+            return;
+        }
+
+        if(api_key){
+            api_key = api_key.split(' ').join('+');
+            key = new KEY(api_key);
+            key.reset_key_data();
+            creator_id = key.getUser_id();
+            key.sessionCheck(api_key, co);
+        }else{
+            res.status(400).json({info:"invalid api_key"});
+        }
+
+        function co() {
+            if(key.getRes_sessionCheck().valid){
+                ece = new event_create_event(name, semester, creator_id, v_private, schedule, content);
+                ece.do_exec(rc);
+            }else{
+                res.status(401).json({info:"authentication failed"});
+            }
+        }
+
+        function rc() {
+            var res_json = ece.getResult();
+            if(res_json.status===200){
+                res.status(res_json.status).json({info: "success"});
+            }else{
+                res.status(res_json.status).json({info:res_json.err_msg});
+            }
+        }
+    });
+
 router.route('/event_list')
     .get(function (req, res) {
         // var desk_id = req.query.desk_id;
@@ -350,16 +475,30 @@ router.route('/event_list')
         var date = req.query.date;
         var api_key = req.query.api_key;
         var date_json = date_sweek_convert(date);
-        if(!api_key){
-            res.status(400).json({info:"invalid api_key."});
-            return;
-        }
         if(!date_json.valid){
             res.status(400).json({info:"invalid date."});
             return;
         }
-        var event_get = new event_list_get_by_sweek(desk_id,date_json.semester,date_json.week);
-        event_get.do_exec(rc);
+
+        var key, user_id, event_get;
+        if(api_key){
+            api_key = api_key.split(' ').join('+');
+            key = new KEY(api_key);
+            key.reset_key_data();
+            user_id = key.getUser_id();
+            key.sessionCheck(api_key, co);
+        }else{
+            res.status(400).json({info:"invalid api_key"});
+        }
+
+        function co() {
+            if(key.getRes_sessionCheck().valid){
+                event_get = new event_list_get_by_sweek(desk_id,date_json.semester,date_json.week);
+                event_get.do_exec(rc);
+            }else{
+                res.status(401).json({info:"authentication failed"});
+            }
+        }
 
         function rc() {
             var res_json = event_get.getResult();
@@ -433,21 +572,18 @@ router.route('/comment')
     .post(function (req, res) {
         var pre_comment_id = req.query.pre_comment_id;
         if(!pre_comment_id) pre_comment_id = req.body.pre_comment_id;
-        var user_id = req.query.user_id;
-        if(!user_id) user_id = req.body.user_id;
+        var api_key = req.query.api_key;
+        if(!api_key) api_key = req.body.api_key;
         var event_id = req.query.event_id;
         if(!event_id) event_id = req.body.event_id;
         var content = req.query.content;
         if(!content) content = req.body.content;
 
+        var key, user_id, comment_new;
         if(!pre_comment_id){
             // res.status(400).json({info:"invalid pre_comment_id"});
             // return;
             pre_comment_id = "";
-        }
-        if(!user_id){
-            res.status(400).json({info:"invalid user_id"});
-            return;
         }
         if(!event_id){
             res.status(400).json({info:"invalid event_id"});
@@ -457,9 +593,24 @@ router.route('/comment')
             res.status(400).json({info:"invalid content"});
             return;
         }
-        // var event_id = "1600231";
-        var comment_new = new comment_create(pre_comment_id, user_id, event_id, content);
-        comment_new.do_exec(rc);
+        if(api_key){
+            api_key = api_key.split(' ').join('+');
+            key = new KEY(api_key);
+            key.reset_key_data();
+            user_id = key.getUser_id();
+            key.sessionCheck(api_key, co);
+        }else{
+            res.status(400).json({info:"invalid api_key"});
+        }
+
+        function co() {
+            if(key.getRes_sessionCheck().valid){
+                comment_new = new comment_create(pre_comment_id, user_id, event_id, content);
+                comment_new.do_exec(rc);
+            }else{
+                res.status(401).json({info:"authentication failed"});
+            }
+        }
 
         function rc() {
             var res_json = comment_new.getResult();
@@ -477,9 +628,28 @@ router.route('/comment')
             res.status(400).json({info:"invalid comment_id"});
             return;
         }
-        // var event_id = "1600231";
-        var comment_get = new comment_delete(comment_id);
-        comment_get.do_exec(rc);
+        var api_key = req.query.api_key;
+        if(!api_key) api_key = req.body.api_key;
+
+        var key, user_id, comment_get;
+        if(api_key){
+            api_key = api_key.split(' ').join('+');
+            key = new KEY(api_key);
+            key.reset_key_data();
+            user_id = key.getUser_id();
+            key.sessionCheck(api_key, co);
+        }else{
+            res.status(400).json({info:"invalid api_key"});
+        }
+
+        function co() {
+            if(key.getRes_sessionCheck().valid){
+                comment_get = new comment_delete(comment_id);
+                comment_get.do_exec(rc);
+            }else{
+                res.status(401).json({info:"authentication failed"});
+            }
+        }
 
         function rc() {
             var res_json = comment_get.getResult();
@@ -494,14 +664,32 @@ router.route('/comment')
 
 router.route('/comment_list')
     .get(function (req, res) {
+        var api_key = req.query.api_key;
+        if(!api_key) api_key = req.body.api_key;
         var event_id = req.query.event_id;
         if(!event_id){
             res.status(400).json({info:"invalid event_id"});
             return;
         }
-        // var event_id = "1600231";
-        var comment_get = new comment_list_get_by_event(event_id);
-        comment_get.do_exec(rc);
+        var key, user_id, comment_get;
+        if(api_key){
+            api_key = api_key.split(' ').join('+');
+            key = new KEY(api_key);
+            key.reset_key_data();
+            user_id = key.getUser_id();
+            key.sessionCheck(api_key, co);
+        }else{
+            res.status(400).json({info:"invalid api_key"});
+        }
+
+        function co() {
+            if(key.getRes_sessionCheck().valid){
+                comment_get = new comment_list_get_by_event(event_id);
+                comment_get.do_exec(rc);
+            }else{
+                res.status(401).json({info:"authentication failed"});
+            }
+        }
 
         function rc() {
             var res_json = comment_get.getResult();
@@ -512,11 +700,6 @@ router.route('/comment_list')
             res.json(res_json.result);
         }
     });
-
-// router.route('/comment_report')
-//     .post(function (req, res) {
-//
-//     });
 
 var comment_available = require('./app/actions/comment_available');
 router.route('/comment/available')

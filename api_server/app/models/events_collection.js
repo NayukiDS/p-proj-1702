@@ -9,7 +9,9 @@ var EventCollectionSchema = new Schema({
     e_course: {type: Boolean },
     private: { type: Boolean },
     semester: { type: Number },
-    schedule: [{ type: Schema.Types.Mixed }]//JSON string
+    schedule: [{ type: Schema.Types.Mixed }],//JSON string
+    student_r_id: { type: String, ref: 'user' },
+    content: { type: String }
 });
 
 module.exports = mongoose.model('event', EventCollectionSchema);
