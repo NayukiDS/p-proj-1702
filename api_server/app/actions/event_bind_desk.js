@@ -22,10 +22,15 @@ function event_bind_desk(d_id, e_id){
                     desk.save();
                     callback();
                 }else{
+                    res_json.err = true;
+                    res_json.err_msg = "Could not found desk requested by client";
+                    res_json.status = 500;
                     callback();
                 }
             }else{
-                console.log("no desk found");
+                res_json.err = true;
+                res_json.err_msg = "Could not found event in the desk.";
+                res_json.status = 500;
                 callback();
             }
         });
@@ -41,10 +46,14 @@ function event_bind_desk(d_id, e_id){
                     desk.save();
                     callback();
                 }else{
-                    callback();
+                    res_json.err = true;
+                    res_json.err_msg = "Event already in desk.";
+                    res_json.status = 500;
                 }
             }else{
-                console.log("no desk found");
+                res_json.err = true;
+                res_json.err_msg = "Could not found desk requested by client";
+                res_json.status = 500;
                 callback();
             }
         })

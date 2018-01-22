@@ -572,6 +572,61 @@ router.route('/event_search')
         }
     });
 
+var event_bind_desk = require('./app/actions/event_bind_desk');
+router.route('/bind')
+    .put(function (req, res) {
+        var api_key = req.query.api_key;
+        if(!api_key) api_key = req.body.api_key;
+        var desk_id = req.query.desk_id;
+        if(!desk_id) desk_id = req.body.desk_id;
+        var event_id = req.query.event_id;
+        if(!event_id) event_id = req.body.event_id;
+        var bool = req.query.bool;
+        if(!bool) event_id = req.body.bool;
+
+        if(!desk_id){
+            res.status(400).json({info:"invalid desk_id."});
+            return;
+        }
+        if(!event_id){
+            res.status(400).json({info:"invalid event_id."});
+            return;
+        }
+
+        var ebd, key;
+        if(api_key){
+            api_key = api_key.split(' ').join('+');
+            key = new KEY(api_key);
+            key.reset_key_data();
+            key.sessionCheck(api_key, co);
+        }else{
+            res.status(400).json({info:"invalid api_key"});
+        }
+
+        function co() {
+            if(key.getRes_sessionCheck().valid){
+                ebd = new event_bind_desk(desk_id, event_id);
+                if(bool){
+                    ebd.e_bind(rc);
+                }else{
+                    ebd.a_bind(rc);
+                }
+            }else{
+                res.status(401).json({info:"authentication failed"});
+            }
+        }
+
+        function rc() {
+            var res_json = ebd.getResult();
+            if(res_json.status===200){
+                res.status(res_json.status).json({info: "success"});
+            }else{
+                res.status(res_json.status).json({info:res_json.err_msg});
+            }
+        }
+
+    });
+
 var comment_list_get_by_event = require('./app/actions/comment_list_get_by_event');
 var comment_delete = require('./app/actions/comment_delete');
 var comment_create = require('./app/actions/comment_create');
