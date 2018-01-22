@@ -428,26 +428,8 @@ router.route('/event_search')
 var comment_list_get_by_event = require('./app/actions/comment_list_get_by_event');
 var comment_delete = require('./app/actions/comment_delete');
 var comment_create = require('./app/actions/comment_create');
-router.route('/comment_list')
-    .get(function (req, res) {
-        var event_id = req.query.event_id;
-        if(!event_id){
-            res.status(400).json({info:"invalid event_id"});
-            return;
-        }
-        // var event_id = "1600231";
-        var comment_get = new comment_list_get_by_event(event_id);
-        comment_get.do_exec(rc);
 
-        function rc() {
-            var res_json = comment_get.getResult();
-            if(res_json.err){
-                res.status(500).json({info:res_json.err_msg});
-                return;
-            }
-            res.json(res_json.result);
-        }
-    })
+router.route('/comment')
     .post(function (req, res) {
         var pre_comment_id = req.query.pre_comment_id;
         if(!pre_comment_id) pre_comment_id = req.body.pre_comment_id;
@@ -490,6 +472,7 @@ router.route('/comment_list')
     })
     .delete(function (req, res) {
         var comment_id = req.query.comment_id;
+        if(!comment_id) comment_id = req.body.comment_id;
         if(!comment_id){
             res.status(400).json({info:"invalid comment_id"});
             return;
@@ -506,5 +489,107 @@ router.route('/comment_list')
                 return;
             }
             res.json(res_json.result);
+        }
+    });
+
+router.route('/comment_list')
+    .get(function (req, res) {
+        var event_id = req.query.event_id;
+        if(!event_id){
+            res.status(400).json({info:"invalid event_id"});
+            return;
+        }
+        // var event_id = "1600231";
+        var comment_get = new comment_list_get_by_event(event_id);
+        comment_get.do_exec(rc);
+
+        function rc() {
+            var res_json = comment_get.getResult();
+            if(res_json.err){
+                res.status(500).json({info:res_json.err_msg});
+                return;
+            }
+            res.json(res_json.result);
+        }
+    });
+
+// router.route('/comment_report')
+//     .post(function (req, res) {
+//
+//     });
+
+var comment_available = require('./app/actions/comment_available');
+router.route('/comment/available')
+    .put(function (req, res) {
+        var bool = req.query.bool;
+        if(!bool) bool = req.body.bool;
+        if(!bool){
+            res.status(400).json({info:"invalid bool"});
+            return;
+        }else{
+            var bool_range = ["0","1","2"];
+            if(bool_range.indexOf(bool)===-1){
+                res.status(400).json({info:"invalid bool"});
+                return;
+            }else{
+                if(bool==='1')bool=true;
+                if(bool==='0')bool=false;
+                if(bool==='2')bool="";
+            }
+        }
+        var comment_id = req.query.comment_id;
+        if(!comment_id) comment_id = req.body.comment_id;
+        if(!comment_id){
+            res.status(400).json({info:"invalid comment_id"});
+            return;
+        }
+        var ca = new comment_available(comment_id, bool);
+        ca.do_exec(rc);
+
+        function rc() {
+            var res_json = ca.getResult();
+            if(res_json.status===200){
+                res.status(res_json.status).json(res_json.result);
+            }else{
+                res.status(res_json.status).json(res_json);
+            }
+        }
+    });
+
+var comment_focus = require('./app/actions/comment_focus');
+router.route('/comment/focus')
+    .put(function (req, res) {
+        var bool = req.query.bool;
+        if(!bool) bool = req.body.bool;
+        if(!bool){
+            res.status(400).json({info:"invalid bool"});
+            return;
+        }else{
+            var bool_range = ["0","1","2"];
+            if(bool_range.indexOf(bool)===-1){
+                res.status(400).json({info:"invalid bool"});
+                return;
+            }else{
+                if(bool==='1')bool=true;
+                if(bool==='0')bool=false;
+                if(bool==='2')bool="";
+            }
+        }
+        var comment_id = req.query.comment_id;
+        if(!comment_id) comment_id = req.body.comment_id;
+        if(!comment_id){
+            res.status(400).json({info:"invalid comment_id"});
+            return;
+        }
+        var cf = new comment_focus(comment_id, bool);
+        cf.do_exec(rc);
+
+        function rc() {
+            var res_json = cf.getResult();
+            if(res_json.status===200){
+                res.status(res_json.status).json(res_json.result);
+            }else{
+                res.status(res_json.status).json(res_json);
+            }
         }
     });
