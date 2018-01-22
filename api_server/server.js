@@ -488,12 +488,11 @@ router.route('/event_list')
             return;
         }
 
-        var key, user_id, event_get;
+        var key, event_get;
         if(api_key){
             api_key = api_key.split(' ').join('+');
             key = new KEY(api_key);
             key.reset_key_data();
-            user_id = key.getUser_id();
             key.sessionCheck(api_key, co);
         }else{
             res.status(400).json({info:"invalid api_key"});

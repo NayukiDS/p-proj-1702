@@ -7,7 +7,8 @@ var View_desk_event = new Schema({
     pre_desk: String,
     course: [{ type:String }],
     name: String,
-    event_docs: [{ type: Schema.Types.Mixed }]
+    event_docs: [{ type: Schema.Types.Mixed }],
+    professor_docs: [{ type: Schema.Types.Mixed }]
 });
 
-module.exports = mongoose.model('view_desk_event',View_desk_event);
+module.exports = mongoose.model('view_desk_event_detail',View_desk_event);
