@@ -437,7 +437,7 @@ router.route('/event/event')
             semester = "201701";
         }
         if(!v_private){
-            v_private = false;
+            v_private = true;
         }
         if(!content){
             content = "";
