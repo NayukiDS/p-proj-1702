@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var EventCollectionSchema = new Schema({
-    _id: { type: String },
+    // _id: { type: String },
     name: { type: String },
     professor_id: { type: String },
     creator_id: { type: String },

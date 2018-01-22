@@ -29,7 +29,7 @@ function event_create_course(name, semester, professor_id, student_r_id, e_cours
         course.student_r_id = student_r_id;
         course.e_course = e_course;
         var json_schedule = [];
-        schedule = decodeURI(schedule);
+        schedule = decodeURIComponent(schedule);
         try{
             schedule = JSON.parse(schedule);
         }catch (err){
@@ -49,7 +49,7 @@ function event_create_course(name, semester, professor_id, student_r_id, e_cours
             }
 
             if(!value.date){
-                if(!value.day||wday_range.indexOf(value.day)){
+                if(!value.day||wday_range.indexOf(value.day)===-1){
                     syntax_error("day", index);
                 }else{
                     obj.day = value.day;

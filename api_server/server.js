@@ -372,7 +372,6 @@ router.route('/event/course')
         }
         if(!e_course){
             e_course = false;
-            return;
         }
         if(!schedule){
             res.status(400).json({info:"invalid schedule"});
@@ -410,29 +409,38 @@ router.route('/event/course')
 var event_create_event = require('./app/actions/event_create_event');
 router.route('/event/event')
     .post(function (req, res) {
-        var api_key = req.body.api_key;
-        var name = req.body.name;
-        var semester = req.body.semester;
-        var v_private = req.body.private;
-        var schedule = req.body.schedule;
-        var content = req.body.content;
+        var api_key = req.query.api_key;
+        if(!api_key) api_key = req.body.api_key;
+        var d_id = req.query.desk_id;
+        if(!d_id) d_id = req.body.desk_id;
+        var name = req.query.name;
+        if(!name) name = req.body.name;
+        var semester = req.query.semester;
+        if(!semester) semester = req.body.semester;
+        var v_private = req.query.private;
+        if(!v_private) v_private = req.body.private;
+        var schedule = req.query.schedule;
+        if(!schedule) schedule = req.body.schedule;
+        var content = req.query.content;
+        if(!content) content = req.body.content;
         var key, creator_id, ece;
 
+        if(!d_id){
+            res.status(400).json({info:"invalid desk_id"});
+            return;
+        }
         if(!name){
             res.status(400).json({info:"invalid name"});
             return;
         }
         if(!semester){
             semester = "201701";
-            return;
         }
         if(!v_private){
             v_private = false;
-            return;
         }
         if(!content){
             content = "";
-            return;
         }
         if(!schedule){
             res.status(400).json({info:"invalid schedule"});
@@ -451,7 +459,7 @@ router.route('/event/event')
 
         function co() {
             if(key.getRes_sessionCheck().valid){
-                ece = new event_create_event(name, semester, creator_id, v_private, schedule, content);
+                ece = new event_create_event(d_id, name, semester, creator_id, v_private, schedule, content);
                 ece.do_exec(rc);
             }else{
                 res.status(401).json({info:"authentication failed"});

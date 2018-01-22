@@ -1,8 +1,9 @@
 // var Event = require('../models/event');
 var Event = require('../models/events_collection');
 var date_sweek_convert  = require('../module/date_sweek_convert');
+var event_bind_desk = require('../actions/event_bind_desk');
 
-function event_create_event(name, semester, creator_id, v_private, schedule, content) {
+function event_create_event(d_id, name, semester, creator_id, v_private, schedule, content) {
     var res_json = {
         err: false,
         err_msg: "",
@@ -10,13 +11,14 @@ function event_create_event(name, semester, creator_id, v_private, schedule, con
         result: ""
     };
     var that = this;
+    this.d_id = d_id;
     this.name = name;
     this.semester = semester;
     this.creator_id = creator_id;
     this.v_private = v_private;
     this.schedule = schedule;
     this.content = content;
-    this.create = function (name, semester, creator_id, v_private, schedule, content, callback) {
+    this.create = function (desk_id, name, semester, creator_id, v_private, schedule, content, callback) {
         if(v_private){
             v_private = true;
         }else{
@@ -29,7 +31,7 @@ function event_create_event(name, semester, creator_id, v_private, schedule, con
         event.private = v_private;
         event.content = content;
         var json_schedule = [];
-        schedule = decodeURI(schedule);
+        schedule = decodeURIComponent(schedule);
         try{
             schedule = JSON.parse(schedule);
         }catch (err){
@@ -49,7 +51,7 @@ function event_create_event(name, semester, creator_id, v_private, schedule, con
             }
 
             if(!value.date){
-                if(!value.day||wday_range.indexOf(value.day)){
+                if(!value.day||wday_range.indexOf(value.day)===-1){
                     syntax_error("day", index);
                 }else{
                     obj.day = value.day;
@@ -110,11 +112,9 @@ function event_create_event(name, semester, creator_id, v_private, schedule, con
         var promise = event.save();
         promise.then(
             function (result) {
-                res_json.result = {
-                    info: "success"
-                };
-                callback();
-                return true;
+                console.log(desk_id, result._id);
+                var ebd = new event_bind_desk(desk_id, result._id);
+                ebd.e_bind(rc);
             },
             function (err) {
                 res_json.err = true;
@@ -125,6 +125,14 @@ function event_create_event(name, semester, creator_id, v_private, schedule, con
             }
         );
 
+        function rc() {
+            res_json.result = {
+                info: "success"
+            };
+            callback();
+            return true;
+        }
+
         function syntax_error(type, index) {
             res_json.err = true;
             res_json.err_msg = "Syntax error when parse schedule structure on '["+index+"]."+type+"'.";
@@ -134,7 +142,7 @@ function event_create_event(name, semester, creator_id, v_private, schedule, con
         }
     };
     this.do_exec = function (callback) {
-        that.create(that.name, that.semester, that.creator_id, that.v_private, that.schedule, that.content, callback);
+        that.create(that.d_id, that.name, that.semester, that.creator_id, that.v_private, that.schedule, that.content, callback);
     };
     this.getResult = function () {
         return res_json;
