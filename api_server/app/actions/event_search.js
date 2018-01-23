@@ -73,7 +73,6 @@ function event_search(keyword, type, semester) {
                             return;
                         }
                     }
-                    console.log(holder_id);
                     if(type_name==="公开事件"){
                         User.findById(holder_id, function (err, res) {
                             if(!res){
