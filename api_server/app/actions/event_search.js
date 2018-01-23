@@ -73,21 +73,48 @@ function event_search(keyword, type, semester) {
                             return;
                         }
                     }
-                    User.findById(holder_id, function (err, res) {
-                        holder_name = res.name;
-                        var event_obj = {
-                            _id: value._id,
-                            name: value.name,
-                            // holder_id: holder_id,
-                            holder_name: holder_name,
-                            type: type_name,
-                            semester: value.semester
-                        };
-                        res_json.result.push(event_obj);
-                        if(index===doc.length-1){
-                            rc();
-                        }
-                    });
+                    console.log(holder_id);
+                    if(type_name==="公开事件"){
+                        User.findById(holder_id, function (err, res) {
+                            if(!res){
+                                rc();
+                            }else{
+                                holder_name = res.name;
+                                var event_obj = {
+                                    _id: value._id,
+                                    name: value.name,
+                                    // holder_id: holder_id,
+                                    holder_name: holder_name,
+                                    type: type_name,
+                                    semester: value.semester
+                                };
+                                res_json.result.push(event_obj);
+                                if(index===doc.length-1){
+                                    rc();
+                                }
+                            }
+                        });
+                    }else{
+                        User.find({bind_id: holder_id}, function (err, res) {
+                            if(!res){
+                                rc();
+                            }else{
+                                holder_name = res.name;
+                                var event_obj = {
+                                    _id: value._id,
+                                    name: value.name,
+                                    // holder_id: holder_id,
+                                    holder_name: holder_name,
+                                    type: type_name,
+                                    semester: value.semester
+                                };
+                                res_json.result.push(event_obj);
+                                if(index===doc.length-1){
+                                    rc();
+                                }
+                            }
+                        });
+                    }
                 });
 
             },
