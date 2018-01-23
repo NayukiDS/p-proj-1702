@@ -144,5 +144,41 @@
       "phone": "",
       "email": "zlh@bjut.edu.cn"
     }
+  },
+  {
+    "_id": "108004",
+    "wechat_id": "wid07",
+    "wechat_avatar": "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eowReibexHgAlE6h1Ao3U8ibWh7Wkup9F68N2VXOa3XJFfBPvzZBSUQQjZIuwFibYJqiahpAicF2ibdzlAw/0",
+    "bind_id": "108014",
+    "name": "郑全英",
+    "admin": false,
+    "admin_pd": "",
+    "authentic": true,
+    "class_id": "",
+    "desks": [
+    ],
+    "info": {
+      "office": "uot",
+      "phone": "",
+      "email": "zlh@bjut.edu.cn"
+    }
+  },
+  {
+    "_id": "108004",
+    "wechat_id": "wid07",
+    "wechat_avatar": "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eowReibexHgAlE6h1Ao3U8ibWh7Wkup9F68N2VXOa3XJFfBPvzZBSUQQjZIuwFibYJqiahpAicF2ibdzlAw/0",
+    "bind_id": "108015",
+    "name": "黄静",
+    "admin": false,
+    "admin_pd": "",
+    "authentic": true,
+    "class_id": "",
+    "desks": [
+    ],
+    "info": {
+      "office": "uot",
+      "phone": "",
+      "email": "zlh@bjut.edu.cn"
+    }
   }
 ]

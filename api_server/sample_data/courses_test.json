@@ -3,7 +3,7 @@
     "_id": "1600238",
     "name": "WEB应用程序设计",
     "semester": 201602,
-    "professor_id": "118001",
+    "professor_id": "5a61a88e75fa695bb89e93fb",
     "student_r_id": "",
     "e_course": false,
     "schedule": [
@@ -34,7 +34,7 @@
     "_id": "1600231",
     "name": "Linux内核",
     "semester": 201602,
-    "professor_id": "108004",
+    "professor_id": "5a61a88e75fa695bb89e93ff",
     "student_r_id": "",
     "e_course": true,
     "schedule": [
@@ -58,7 +58,7 @@
     "_id": "1600159",
     "name": "UML与软件建模",
     "semester": 201602,
-    "professor_id": "108002",
+    "professor_id": "5a61a88e75fa695bb89e93fd",
     "student_r_id": "",
     "e_course": false,
     "schedule": [
@@ -82,7 +82,7 @@
     "_id": "1600166",
     "name": "计算机网络",
     "semester": 201602,
-    "professor_id": "108003",
+    "professor_id": "5a61a88e75fa695bb89e93fe",
     "student_r_id": "",
     "e_course": false,
     "schedule": [
@@ -106,7 +106,7 @@
     "_id": "1600181",
     "name": "工作实习",
     "semester": 201701,
-    "professor_id": "108002",
+    "professor_id": "5a61a88e75fa695bb89e93fd",
     "student_r_id": "",
     "schedule": [
       {

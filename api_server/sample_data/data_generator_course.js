@@ -21,6 +21,7 @@ json_obj.forEach(function (t) {
     course.semester = t.semester;
     course.professor_id = t.professor_id;
     course.student_r_id = t.student_r_id;
+    course.e_course = t.e_course;
     var json_schedule = [];
     t.schedule.forEach(function (v) {
         schedule.setter(v.type,v.day,v.week,v.time,v.location);

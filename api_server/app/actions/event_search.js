@@ -33,7 +33,7 @@ function event_search(keyword, type, semester) {
                     var type_name = "";
                     var type_num = ["0"];
                     if(value.private){
-                        // console.log("因非公开淘汰"+value.name);
+                        console.log("因非公开淘汰"+value.name);
                         if(index===doc.length-1){
                             rc();
                             return;
@@ -42,7 +42,7 @@ function event_search(keyword, type, semester) {
                         }
                     }
                     if(value.semester!==semester){
-                        // console.log("因学期淘汰"+value.name);
+                        console.log("因学期淘汰"+value.name);
                         if(index===doc.length-1){
                             rc();
                             return;
@@ -65,7 +65,7 @@ function event_search(keyword, type, semester) {
                         }
                     }
                     if(type_num.indexOf(type)===-1){
-                        // console.log(type_num.indexOf(type)+"因类型条件淘汰"+value.name);
+                        console.log(type_num.indexOf(type)+"因类型条件淘汰"+value.name);
                         if(index===doc.length-1){
                             rc();
                             return;
@@ -78,14 +78,16 @@ function event_search(keyword, type, semester) {
                             if(!res){
                                 rc();
                             }else{
-                                holder_name = res.name;
+                                holder_id = res[0]._id;
+                                holder_name = res[0].name;
                                 var event_obj = {
                                     _id: value._id,
                                     name: value.name,
-                                    // holder_id: holder_id,
+                                    holder_id: holder_id,
                                     holder_name: holder_name,
                                     type: type_name,
-                                    semester: value.semester
+                                    semester: value.semester,
+                                    schedule: value.schedule
                                 };
                                 res_json.result.push(event_obj);
                                 if(index===doc.length-1){
@@ -98,14 +100,16 @@ function event_search(keyword, type, semester) {
                             if(!res){
                                 rc();
                             }else{
-                                holder_name = res.name;
+                                holder_id = res[0].bind_id;
+                                holder_name = res[0].name;
                                 var event_obj = {
                                     _id: value._id,
                                     name: value.name,
-                                    // holder_id: holder_id,
+                                    holder_id: holder_id,
                                     holder_name: holder_name,
                                     type: type_name,
-                                    semester: value.semester
+                                    semester: value.semester,
+                                    schedule: value.schedule
                                 };
                                 res_json.result.push(event_obj);
                                 if(index===doc.length-1){
