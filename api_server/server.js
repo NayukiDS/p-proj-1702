@@ -24,21 +24,21 @@ mongoose.connect('mongodb://'
     +db_info.port+'/'
     +db_info.db+'');
 //----HTTPS
-// var https = require('https')
-//     ,fs = require("fs");
-//
-//
-// var options = {
-//     key: fs.readFileSync('./ssl/privkey.pem'),
-//     cert: fs.readFileSync('./ssl/fullchain.pem')
-// };
-//
-// https.createServer(options, app).listen(443, function () {
-//     console.log('Https server listening on port ' + 443);
-// });
+var https = require('https')
+    ,fs = require("fs");
+
+
+var options = {
+    key: fs.readFileSync('./ssl/privkey.pem'),
+    cert: fs.readFileSync('./ssl/fullchain.pem')
+};
+
+https.createServer(options, app).listen(443, function () {
+    console.log('Https server listening on port ' + 443);
+});
 //----HTTP
-var port = process.env.PORT || 80;
-app.listen(port);
+// var port = process.env.PORT || 80;
+// app.listen(port);
 //----END
 
 var router = express.Router();
@@ -346,13 +346,19 @@ var date_sweek_convert = require('./app/module/date_sweek_convert');
 var event_create_course = require('./app/actions/event_create_course');
 router.route('/event/course')
     .post(function (req, res) {
-        var api_key = req.body.api_key;
-        var name = req.body.name;
-        var semester = req.body.semester;
-        var professor_id = req.body.professor_id;
+        var api_key = req.query.api_key;
+        if(!api_key) api_key = req.body.api_key;
+        var name = req.query.name;
+        if(!name) name = req.body.name;
+        var semester = req.query.semester;
+        if(!semester) semester = req.body.semester;
+        var professor_id = req.query.professor_id;
+        if(!professor_id) professor_id = req.body.professor_id;
         var student_r_id = req.body.student_r_id;
-        var e_course = req.body.e_course;
-        var schedule = req.body.schedule;
+        var e_course = req.query.e_course;
+        if(!e_course) e_course = req.body.e_course;
+        var schedule = req.query.schedule;
+        if(!schedule) schedule = req.body.schedule;
         var key, ecc;
 
         if(!name){
